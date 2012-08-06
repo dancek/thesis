@@ -1,0 +1,203 @@
+% thesis using aalto-thesis.sty
+% http://cse.aalto.fi/studies/instructions/tips-for-masters-thesis-workers/
+\documentclass[12pt,a4paper,oneside]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[OT1]{fontenc}
+\usepackage[english]{babel}
+
+\usepackage[square]{natbib}
+
+% The aalto-thesis package provides typesetting instructions for the
+% standard master's thesis parts (abstracts, front page, and so on)
+% Load this package second-to-last, just before the hyperref package.
+% Options that you can use: 
+%   mydraft - renders the thesis in draft mode. 
+%             Do not use for the final version. 
+%   doublenumbering - [optional] number the first pages of the thesis
+%                     with roman numerals (i, ii, iii, ...); and start
+%                     arabic numbering (1, 2, 3, ...) only on the 
+%                     first page of the first chapter
+%   twoinstructors  - changes the title of instructors to plural form
+%   twosupervisors  - changes the title of supervisors to plural form
+\usepackage[mydraft,doublenumbering]{aalto-thesis}
+
+
+% Hyperref
+% ------------------------------------------------------------------
+% Hyperref creates links from URLs, for references, and creates a
+% TOC in the PDF file.
+% This package must be the last one you include, because it has
+% compatibility issues with many other packages and it fixes
+% those issues when it is loaded.   
+\RequirePackage[pdftex]{hyperref}
+% Setup hyperref so that links are clickable but do not look 
+% different
+\hypersetup{colorlinks=false,raiselinks=false,breaklinks=true}
+\hypersetup{pdfborder={0 0 0}}
+\hypersetup{bookmarksnumbered=true}
+% The following line suggests the PDF reader that it should show the 
+% first level of bookmarks opened in the hierarchical bookmark view. 
+\hypersetup{bookmarksopen=true,bookmarksopenlevel=1}
+% Hyperref can also set up the PDF metadata fields. These are
+% set a bit later on, after the thesis setup.   
+
+% Thesis setup
+% ==================================================================
+% Change these to fit your own thesis.
+% \COMMAND always refers to the English version;
+% \FCOMMAND refers to the Finnish version; and
+% \SCOMMAND refers to the Swedish version.
+% You may comment/remove those language variants that you do not use
+% (but then you must not include the abstracts for that language)
+% ------------------------------------------------------------------
+\newcommand{\TITLE}{Software Processes for Dummies:}
+\newcommand{\SUBTITLE}{Re-inventing the Wheel}
+\newcommand{\DATE}{June 18, 2011}
+
+\newcommand{\SUPERVISOR}{Professor Antti Ylä-Jääski}
+\newcommand{\INSTRUCTOR}{Olli Ohjaaja M.Sc. (Tech.)}
+
+
+% Other stuff
+% ------------------------------------------------------------------
+\newcommand{\PROFESSORSHIP}{Data Communication Software}
+% Professorship code is the same in all languages
+\newcommand{\PROFCODE}{T-110}
+\newcommand{\KEYWORDS}{ocean, sea, marine, ocean mammal, marine mammal, whales,
+cetaceans, dolphins, porpoises}
+\newcommand{\LANGUAGE}{English}
+
+% Author is the same for all languages
+\newcommand{\AUTHOR}{Hannu Hartikainen}
+
+
+% Currently the English versions are used for the PDF file metadata
+% Set the PDF title
+\hypersetup{pdftitle={\TITLE\ \SUBTITLE}}
+% Set the PDF author
+\hypersetup{pdfauthor={\AUTHOR}}
+% Set the PDF keywords
+\hypersetup{pdfkeywords={\KEYWORDS}}
+% Set the PDF subject
+\hypersetup{pdfsubject={Master's Thesis}}
+
+
+% Layout settings
+% ------------------------------------------------------------------
+
+% Use this to control how much space there is between each line of text.
+% 1 is normal (no extra space), 1.3 is about one-half more space, and
+% 1.6 is about double line spacing.  
+\linespread{1.3}
+
+% Bibliography style
+\bibliographystyle{plainnat}
+
+
+% The preamble ends here, and the document begins. 
+% Place all formatting commands and such before this line.
+% ------------------------------------------------------------------
+\begin{document}
+% This command adds a PDF bookmark to the cover page. You may leave
+% it out if you don't like it...
+\pdfbookmark[0]{Cover page}{bookmark.0.cover}
+% This command is defined in aalto-thesis.sty. It controls the page 
+% numbering based on whether the doublenumbering option is specified
+\startcoverpage
+
+% Cover page
+% ------------------------------------------------------------------
+% Options: finnish, english, and swedish
+% These control in which language the cover-page information is shown
+\coverpage{english}
+
+
+% Abstracts
+% ------------------------------------------------------------------
+% Include an abstract in the language that the thesis is written in,
+% and if your native language is Finnish or Swedish, one in that language.
+
+% Abstract in English
+% ------------------------------------------------------------------
+\thesisabstract{english}{
+\fixme{Abstract text goes here}
+}
+
+
+% Acknowledgements
+% ------------------------------------------------------------------
+\selectlanguage{english}
+\chapter*{Acknowledgements}
+
+I wish to thank all students who use \LaTeX\ for formatting their theses,
+because theses formatted with \LaTeX\ are just so nice.
+
+Thank you, and keep up the good work!
+\vskip 10mm
+
+\noindent Espoo, \DATE
+\vskip 5mm
+\noindent\AUTHOR
+
+
+% Acronyms
+% ------------------------------------------------------------------
+% Use \cleardoublepage so that IF two-sided printing is used 
+% (which is not often for masters theses), then the pages will still
+% start correctly on the right-hand side.
+%\cleardoublepage
+%\input{acronyms}
+
+% Table of contents
+% ------------------------------------------------------------------
+\cleardoublepage
+% This command adds a PDF bookmark that links to the contents.
+% You can use \addcontentsline{} as well, but that also adds contents
+% entry to the table of contents, which is kind of redundant.
+% The text ``Contents'' is shown in the PDF bookmark. 
+\pdfbookmark[0]{Contents}{bookmark.0.contents}
+\tableofcontents
+
+% The following label is used for counting the prelude pages
+\label{pages-prelude}
+\cleardoublepage
+
+
+%%%%%%%%%%%%%%%%% The main content starts here %%%%%%%%%%%%%%%%%%%%%
+% ------------------------------------------------------------------
+% This command is defined in aalto-thesis.sty. It controls the page 
+% numbering based on whether the doublenumbering option is specified
+\startfirstchapter
+
+% Add headings to pages (the chapter title is shown)
+\pagestyle{headings}
+
+% The contents of the thesis are separated to their own files.
+% Edit the content in these files, rename them as necessary.
+% ------------------------------------------------------------------
+
+%\input{introduction.tex}
+% ...
+
+
+% Load the bibliographic references
+% ------------------------------------------------------------------
+% You can use several .bib files:
+% \bibliography{thesis_sources,ietf_sources}
+\bibliography{sources}
+
+
+% Appendices go here
+% ------------------------------------------------------------------
+% If you do not have appendices, comment out the following lines
+%\appendix
+%\input{appendices.tex}
+
+% End of document!
+% ------------------------------------------------------------------
+% The LastPage package automatically places a label on the last page.
+% That works better than placing a label here manually, because the
+% label might not go to the actual last page, if LaTeX needs to place
+% floats (that is, figures, tables, and such) to the end of the 
+% document.
+\end{document}
