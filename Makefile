@@ -1,6 +1,6 @@
 all: pdflatex clean
 
-pdflatex:
+pdflatex: clean
 	pdflatex thesis
 	bibtex thesis
 	pdflatex thesis
