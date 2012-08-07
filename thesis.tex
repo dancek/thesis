@@ -1,8 +1,16 @@
 % thesis using aalto-thesis.sty
 % http://cse.aalto.fi/studies/instructions/tips-for-masters-thesis-workers/
 \documentclass[12pt,a4paper,oneside]{report}
-\usepackage[utf8]{inputenc}
-\usepackage[OT1]{fontenc}
+
+% try to maintain compatibility both with pdftex and xetex
+\usepackage{ifxetex}
+\ifxetex
+  \usepackage{fontspec}
+\else
+  \usepackage[utf8]{inputenc}
+  \usepackage[OT1]{fontenc}
+\fi
+
 \usepackage[english]{babel}
 
 \usepackage[square]{natbib}
