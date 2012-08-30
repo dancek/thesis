@@ -1,6 +1,6 @@
 \chapter{Approach}
 
-\section{Getting RGB-D data}
+\section{Getting point cloud data}
 
 % TODO: explain RGB-D
 % TODO: avoid using an abbreviation altogether?
@@ -8,7 +8,7 @@
 The OpenNI library \citep{OpenNI}
 was used for data acquisition. The actual sensor used was Microsoft Kinect.
 
-\section{Person recognition and skeleton generation}
+\section{Body part segmentation}
 
 Before any attempts at human body reconstruction can be made, the body needs to be detected from the RGB-D image. 
 
@@ -17,9 +17,7 @@ includes functions for person detection. Moreover, NITE has the capability to ge
 
 As the skeleton representation is available, it was used to aid in recosntructing the body model.
 
-\section{Body part segmentation}
-
-Using the skeleton data, the RGB-D point cloud was segmented according to body parts.
+Using the skeleton data, we segment the point cloud according to body parts.
 
 The body parts used were chosen according to what the NITE skeleton allowed. Thus the following segments were used:
 
@@ -28,9 +26,11 @@ legs, feet, forearms, shoulders, head, torso, hip}
 
 \section{Point cloud alignment}
 
-The naïve approach to modeling uses data only from a single frame. However, this is unsatisfactory as in practice only less than a half (e.g. the front part) of a human can be seen at once.
+The naïve approach to modeling uses data only from a single frame. However, this is unsatisfactory as in practice only less than a half (e.g. the front part) of a human can be seen at once. Another consideration is that the data tends to be noisy and inaccurate. Accumulating data over time makes it possible to remove some of the noise and improve accuracy.
 
-To allow for combining data from multiple frames, the observations (point clouds) need to be aligned one way or another.
+To allow for combining data from multiple frames, the observations (point clouds) need to be aligned one way or another. Methods introduced in \ref{literature.alignment} were available, each with their own trade-offs.
+
+\fixme{write more about this when the best approach is actually chosen}
 
 \section{Mesh generation}
 
