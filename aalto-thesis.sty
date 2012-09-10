@@ -43,6 +43,9 @@
 % position in the page, instead of a relative position)
 \RequirePackage[absolute]{textpos}
 
+% allow using colors
+\RequirePackage{color}
+
 \newcommand{\startcoverpage}{\pagenumbering{arabic}}
 \newcommand{\startfirstchapter}{}
 % The number of pages is counted based on the labels.
@@ -61,12 +64,13 @@
 % draft (assumed to be today)
 \newcommand{\DRAFT}{}
 \DeclareOption{mydraft}{
-\renewcommand{\fixme}[1]{\textsc{\small !Fixme} \textbf{#1}
-\textsc{\small Fixme!}} 
-\renewcommand{\DRAFT}{
-\begin{center}
-\textbf{DRAFT! --- \today\ --- DRAFT!}
-\end{center}}
+    \definecolor{fixme}{RGB}{191,0,0}
+    \renewcommand{\fixme}[1]{\textcolor{fixme}{\textsc{\small !Fixme}
+            \textbf{#1} \textsc{\small Fixme!}}} 
+    \renewcommand{\DRAFT}{
+    \begin{center}
+    \textbf{DRAFT! --- \today\ --- DRAFT!}
+    \end{center}}
 }
 
 \newcommand{\NUMINSTRUCTORS}{1}
