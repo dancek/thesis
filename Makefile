@@ -11,3 +11,10 @@ clean:
 
 realclean: clean
 	rm -f thesis.pdf
+
+# helpers
+edit:
+	gvim *.tex *.bib Makefile
+
+view:
+	evince thesis.pdf &
