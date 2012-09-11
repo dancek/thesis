@@ -42,6 +42,11 @@ To allow for combining data from multiple frames, the observations (point clouds
 
 One possible approach is to use a voxel grid not unlike the one Kinect Fusion \citep{} uses. This allows generating meshes representing arbitrary shapes.
 
+To evaluate the approach, a prototype was built on top of Kinfu\footnote{Kinfu is an open source implementation of Kinect Fusion \citep{newcombe2011kinectfusion
+}. It is included in the Point Cloud Library \citep{PCL}.}. Since the point clouds were already segmented by body part, it was possible to create recordings that only include a single body part. These recordings could then be played back and used as input for Kinfu.
+
+The working hypothesis was that each body part could be treated as a static object, and that Kinfu should do quite well at modeling them. Notably there's little difference between the camera moving (as is the case in Kinect Fusion) and the object moving. If the background is filtered out, the result is similar. This made for the case that running the Kinect Fusion algorithm in parallel to each body part could give reasonably good results.
+
 \subsection{Parametric surfaces}
 
 Another approach is to use the information readily available about the body parts being modeled. Instead of allowing arbitrary shapes, the space of possible shapes can be limited to what the body parts tend to look like.
