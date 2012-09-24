@@ -7,10 +7,10 @@ pdflatex: clean
 	pdflatex thesis
 
 clean:
-	rm -f thesis.aux thesis.log thesis.bbl thesis.blg thesis.dvi thesis.toc
+	rm -f *.4ct *.4tc *.aux *.idv *.lg *.log *.bbl *.blg *.dvi *.out *.tmp *.toc *.xref
 
 realclean: clean
-	rm -f thesis.pdf
+	rm -f thesis.pdf thesis.css thesis*.html thesis.txt
 
 # helpers
 edit:
