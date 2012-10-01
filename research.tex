@@ -46,6 +46,8 @@ To evaluate the approach, a prototype was built on top of Kinfu\footnote{Kinfu i
 
 The working hypothesis was that each body part could be treated as a static object, and that Kinfu should do quite well at modeling them. Notably there's little difference between the camera moving (as is the case in Kinect Fusion) and the object moving. If the background is filtered out, the result is similar. This made for the case that running the Kinect Fusion algorithm in parallel to each body part could give reasonably good results.
 
+In practice, Kinfu doesn't work well with isolated limb data. This has multiple causes. \fixme{1) For full-body scanning the whole user must obviously fit in the picture. At the VGA resolution that Kinect uses, this leaves few pixels per limb. 2) The depth resolution of Kinect is about 1--2 centimeters at a distance suitable for full-body scanning. 3) ICP only uses surface features for alignment, not color data. As the individual body parts tend to be quite smooth, this is a problem.}
+
 \subsection{Parametric surfaces}
 
 Another approach is to use the information readily available about the body parts being modeled. Instead of allowing arbitrary shapes, the space of possible shapes can be limited to what the body parts tend to look like.
