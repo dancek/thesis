@@ -5,11 +5,33 @@
 % libraries
 % \citep{OpenNI} \citep{NITE} \citep{PCL}
 \section{Point cloud alignment} \label{literature.alignment}
+
+\fixme{Why is point cloud alignment interesting?}
+
+The Iterative Closest Point (ICP) algorithm is commonly used for aligning two point clouds. \fixme{The algorithm was originally presented where, by whom?} The algorithm in pseudocode is shown in \ref{literature.pseudoicp}. It works by finding corresponding points from the two point clouds. Then a rigid transformation that minimizes the error between the corresponding point pairs is searched for. This transformation is then applied. Iterating this multiple times, a local optimum should be found.
+
+\fixme{make this a float or something}
+\label{literature.pseudoicp}
+for 1..iterations:
+  for each point $x_i$ in X:
+    $y_i$ = closest point in Y
+  error := $sum_i (x_i-y_i)^2$
+  find rigid transformation $T_i$ that minimizes error
+  apply $T_i$ on X
+output T = $product_i T_i$
+
+Even from this description it's obvious that ICP has its shortcomings. If the initial guess is too much off, the algorithm can yield horrible results. This is because for non-trivial point clouds, most local optima are significantly different from the global optimum.
+
+Another issue with ICP is that it requires a lot of computation if the point clouds are large. \citep{rusinkiewicz2001efficient} review different ways of improving the efficiency of ICP. They also attain minor improvements to the alignment accuracy.
+
+However, even these improved variants of ICP suffer from converging on local minima. The EM-ICP \fixme{(abbreviation)} algorithm introduced by \citep{granger2006multi} overcomes this problem at the cost of being computationally very intensive. 
+
+\citep{tamaki2010softassign} make EM-ICP more efficient by implementing the computation on GPU using CUDA. The speed is unfortunately still not fast enough for real-time usage on current hardware.
+
+\fixme{Another interesting improvement over ICP is suggested by \citep{tykkala2011direct}. Their algorithm, Direct Iterative Closest Point, is very well suited for SLAM using an RGB-D sensor. (try to understand this better and write more accurately)}
+
 \citep{huang2011visual}
-\citep{rusinkiewicz2001efficient}
-\citep{tamaki2010softassign}
-\citep{granger2006multi}
-\citep{tykkala2011direct}
+
 
 \section{Human body models}
 \citep{anguelov2005scape}
