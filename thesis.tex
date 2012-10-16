@@ -18,6 +18,10 @@
 % insert a 'Bibliography' item in TOC
 \usepackage[nottoc]{tocbibind}
 
+\usepackage{algorithmicx}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
 % The aalto-thesis package provides typesetting instructions for the
 % standard master's thesis parts (abstracts, front page, and so on)
 % Load this package second-to-last, just before the hyperref package.
@@ -40,7 +44,7 @@
 % This package must be the last one you include, because it has
 % compatibility issues with many other packages and it fixes
 % those issues when it is loaded.   
-\RequirePackage[pdftex]{hyperref}
+\RequirePackage{hyperref}
 % Setup hyperref so that links are clickable but do not look 
 % different
 \hypersetup{colorlinks=false,raiselinks=false,breaklinks=true}
