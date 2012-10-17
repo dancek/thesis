@@ -12,14 +12,19 @@ The Iterative Closest Point (ICP) algorithm is commonly used for aligning two po
 
 \fixme{make this a float or something}
 \begin{algorithm}
+\caption{Iterative Closest Point}
 \label{literature.pseudoicp}
-for 1..iterations:
-  for each point $x_i$ in X:
-    $y_i$ = closest point in Y
-  error := $sum_i (x_i-y_i)^2$
-  find rigid transformation $T_i$ that minimizes error
-  apply $T_i$ on X
-output T = $product_i T_i$
+\begin{algorithmic}
+    \For{1..iterations}
+        \ForAll{point $x_i$ in X}
+            \State $y_i$ = closest point in Y
+        \EndFor
+        \State error := $sum_i (x_i-y_i)^2$
+        \State find rigid transformation $T_i$ that minimizes error
+        \State apply $T_i$ on X
+    \EndFor
+    \State \Return output T = $product_i T_i$
+\end{algorithmic}
 \end{algorithm}
 
 Even from this description it's obvious that ICP has its shortcomings. If the initial guess is too much off, the algorithm can yield horrible results. This is because for non-trivial point clouds, most local optima are significantly different from the global optimum.
