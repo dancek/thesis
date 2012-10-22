@@ -8,7 +8,7 @@
 
 \fixme{Why is point cloud alignment interesting?}
 
-The Iterative Closest Point (ICP) algorithm is commonly used for aligning two point clouds. \fixme{The algorithm was originally presented where, by whom?} The algorithm in pseudocode is shown in Algorithm \ref{literature.pseudoicp}. It works by finding corresponding points from the two point clouds. Then a rigid transformation that minimizes the error between the corresponding point pairs is searched for. This transformation is then applied. Iterating this multiple times, a local optimum should be found.
+The Iterative Closest Point (ICP) algorithm is commonly used for aligning two point clouds. \fixme{The algorithm was originally presented by \citet{besl1992method}} The algorithm in pseudocode is shown in Algorithm \ref{literature.pseudoicp}. It works by finding corresponding points from the two point clouds. Then a rigid transformation that minimizes the error between the corresponding point pairs is searched for. This transformation is then applied. Iterating this multiple times, a local optimum should be found.
 
 \begin{algorithm}
 \caption{Iterative Closest Point}
