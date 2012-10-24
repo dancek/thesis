@@ -30,7 +30,7 @@ Even from this description it's obvious that ICP has its shortcomings. If the in
 
 Another issue with ICP is that it requires a lot of computation if the point clouds are large. \citet{rusinkiewicz2001efficient} review different ways of improving the efficiency of ICP. They also attain minor improvements to the alignment accuracy.
 
-However, even these improved variants of ICP suffer from converging on local minima. The EM-ICP \fixme{(abbreviation)} algorithm introduced by \citet{granger2006multi} overcomes this problem \fixme{at the cost of being computationally very intensive.}
+However, even these improved variants of ICP suffer from converging on local minima. The EM-ICP \fixme{(abbreviation)} algorithm introduced by \citet{granger2006multi} overcomes this problem \fixme{at the cost of being computationally very intensive. (is this accurate?)}
 
 \citet{tamaki2010softassign} make EM-ICP more efficient by implementing the computation on GPU using CUDA. The speed is unfortunately still not fast enough for real-time usage on current hardware.
 
