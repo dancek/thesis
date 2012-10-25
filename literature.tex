@@ -28,7 +28,7 @@ The Iterative Closest Point (ICP) algorithm is commonly used for aligning two po
 \end{algorithmic}
 \end{algorithm}
 
-Even from this description it's obvious that ICP has its shortcomings. If the initial guess is too much off, the algorithm can yield horrible results. This is because for non-trivial point clouds, local optima may exist that are significantly different from the global optimum.
+Even from this description it's obvious that ICP has its shortcomings. If the initial guess is too much off, the algorithm can yield bad results. This is because for non-trivial point clouds, local optima may exist that are significantly different from the global optimum.
 
 Another issue with ICP is that it requires a lot of computation if the point clouds are large. \citet{rusinkiewicz2001efficient} review different ways of improving the efficiency of ICP. They also attain minor improvements to the alignment accuracy.
 
