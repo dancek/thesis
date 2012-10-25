@@ -40,7 +40,7 @@ To allow for combining data from multiple frames, the observations (point clouds
 
 \subsection{Voxel grid}
 
-One possible approach is to use a voxel grid not unlike the one Kinect Fusion \citep{} uses. This allows generating meshes representing arbitrary shapes.
+One possible approach is to use a voxel grid similar to the one Kinect Fusion \citep{} uses. This allows generating meshes representing arbitrary shapes.
 
 To evaluate the approach, a prototype was built on top of Kinfu\footnote{Kinfu is an open source implementation of Kinect Fusion \citep{newcombe2011kinectfusion}. It is included in the Point Cloud Library \citep{PCL}.}. Since the point clouds were already segmented by body part, it was possible to create recordings that only include a single body part. These recordings could then be played back and used as input for Kinfu.
 
