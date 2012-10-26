@@ -58,12 +58,6 @@ MakeHuman has an androgynous base mesh that supposedly depicts an average human.
 (generic)
 \citep{fabio2003point}
 
-(kinect fusion)
-\citep{izadi2011kinectfusion}
-\citep{newcombe2011kinectfusion}
-\citep{Whelan12rssw}
-\citep{Whelan12tr}
-
 (human mesh)
 
 Currently, the most promising work at creating personalized human avatars has been by \citet{weiss2011home}. Their approach uses the SCAPE body model \citep{anguelov2005scape}. This makes for very good reconstruction accuracy and excellent \fixme{rendered shapes (muscle deformation according to pose etc)}. However, the evaluation is slow\fixme{ at x seconds per frame (or somesuch)} and the SCAPE model needs to be trained with a large amount of data beforehand.
@@ -76,4 +70,15 @@ Currently, the most promising work at creating personalized human avatars has be
 
 (human pose)
 \citep{baak2011data}
+
+\section{KinectFusion}
+
+KinectFusion is a real-time 3D reconstruction system that uses data from a moving Kinect sensor. It performs camera position and pose tracking, surface reconstruction and rendering. \citep{izadi2011kinectfusion}
+
+The implementation works on consumer hardware by way of general-purpose computing on graphics processing units (GPGPU). More specifically, KinectFusion utilizes fully parallel tracking and mapping algorithms that are very efficient on the GPU (graphics processing unit) \citep{newcombe2011kinectfusion}.
+
+KinectFusion was made in a project at Microsoft Research. No source code has been published. Nevertheless, an open source implementation called Kinfu has been made based on the descriptions in the two articles. Kinfu is available as part of the Point Cloud Library \citep{PCL}.
+
+\citep{Whelan12rssw}
+\citep{Whelan12tr}
 
