@@ -79,6 +79,8 @@ The implementation works on consumer hardware by way of general-purpose computin
 
 \fixme{KinectFusion technology: raycasting, ICP, TSDF/voxel grid}
 
+\fixme{KinectFusion uses a variation of Signed Distance Function (SDF), whose value is defined as the distance to the nearest surface for a point in space. The values are signed--a negative value means the point is inside an object. In the KinectFusion implementation, a 3D volume of fixed physical dimensions and resolution is allocated. For each cell in this voxel grid, the distance to nearest surface is saved. However, only values for a truncated area near the surface are actually stored--this variation is called Truncated Signed Distance Function (TSDF). \citep{izadi2011kinectfusion}}
+
 KinectFusion was made in a project at Microsoft Research. No source code has been published. Nevertheless, an open source implementation called Kinfu has been made based on the descriptions in the two articles. Kinfu is available as part of the Point Cloud Library (PCL) \citep{PCL}.
 
 The availability of an open source implementation has allowed further improvements on the system. For example, the KinectFusion algorithm was soon improved to work over extended areas \citep{Whelan12rssw}. The enhanced version is called Kintinuous and has been built on Kinfu. The authors have pledged to release the source code back to PCL \fixme{(citation)}, but as of writing this has not yet happened.
