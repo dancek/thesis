@@ -63,7 +63,9 @@ MakeHuman has an androgynous base mesh that supposedly depicts an average human.
 Currently, the most promising work at creating personalized human avatars has been by \citet{weiss2011home}. Their approach uses the SCAPE body model \citep{anguelov2005scape}. This makes for very good reconstruction accuracy and excellent \fixme{rendered shapes (muscle deformation according to pose etc)}. However, the evaluation is slow\fixme{ at x seconds per frame (or somesuch)} and the SCAPE model needs to be trained with a large amount of data beforehand.
 
 \citep{schneider2010fitting}
-\citep{ahmed2005automatic}
+
+\citet{ahmed2005automatic} presented a method for creating human avatars from multi-view video. The process is automatic and the avatars are visually quite accurate. For capturing, a frame-synchronized setup of eight cameras is used. The human is segmented from each view, yielding eight silhouettes. A template body model is deformed so that it optimally fits all the silhouettes. The template consists of 16 parts, each of which is controlled by four B-splines. The deformations are optimized for each viewpoint, and for improved accuracy, using several non-subsequent frames. According to the authors, about five automatically chosen time steps are sufficient, and thus just a few seconds of multi-view video is required. The computation of the human model takes about 15 minutes. After the shape is personalized, it is textured by projecting the images back to the constructed model. The method takes occlusion into account and combines textures over several time steps. The texture reconstruction takes around 40 seconds. \citep{ahmed2005automatic}
+
 \citep{tongscanning}
 \citep{charpentier2011accurate}
 \citep{hirshbergc2011evaluating}
