@@ -60,7 +60,7 @@ MakeHuman has an androgynous base mesh that supposedly depicts an average human.
 
 (human mesh)
 
-Currently, the most promising work at creating personalized human avatars has been by \citet{weiss2011home}. Their approach uses the SCAPE body model \citep{anguelov2005scape}. This makes for very good reconstruction accuracy and excellent \fixme{rendered shapes (muscle deformation according to pose etc)}. However, the evaluation is slow\fixme{ at x seconds per frame (or somesuch)} and the SCAPE model needs to be trained with a large amount of data beforehand.
+Currently, the most promising work at creating personalized human avatars has been by \citet{weiss2011home}. Their approach uses the SCAPE body model \citep{anguelov2005scape}. This makes for very good reconstruction accuracy and excellent \fixme{rendered shapes (muscle deformation according to pose etc)}. However, the evaluation is slow\fixme{ at approximately 65 minutes for a human model, according to \citet{tongscanning}} and the SCAPE model needs to be trained with a large amount of data beforehand.
 
 \citep{schneider2010fitting}
 
@@ -68,7 +68,8 @@ Currently, the most promising work at creating personalized human avatars has be
 
 \citet{stoll2010video} capture animatable virtual humans from multi-view video similar to what \citet{ahmed2005automatic} use, making the reconstruction more accurate and adding cloth modeling, while not implementing texturing. They show algorithms for identifying cloth and estimating its parameters for cloth simulation, and guessing the surface geometry underneath the clothing. The cloth capture and simulation is shown to be plausible by a user study. Computation of the model takes 2.5 hours for 1000 frames of multi-view video, but afterwards the model can be animated in real time using a rigged skeleton. \citep{stoll2010video}
 
-\citep{tongscanning}
+\citet{tongscanning} use three Kinects and a turntable to scan human bodies. They note a better accuracy than \citep{weiss2011home}, which is due to the latter using a human shape model (SCAPE) that is only applicable to near-naked human bodies. In practice, the method by \citeauthor{tongscanning} is capable of modeling arbitrary surfaces on top of the human such as clothes and hair. It can also work with shapes that are not included in the SCAPE space, such as specific facial features not interpolatable from the SCAPE training data. However, this comes at the cost of animation. Whereas \fixme{SCAPE supports freeform posing and has realistic deformations \citep{anguelov2005scape},} \citet{tongscanning} only note that the ``skeleton and skin weights of the reconstructed body mesh can be automatically extracted'' using another method such as \citep{baran2007automatic}.
+
 \citep{charpentier2011accurate}
 \citep{hirshbergc2011evaluating}
 
