@@ -34,7 +34,7 @@ Another issue with ICP is that it requires a lot of computation if the point clo
 
 However, even these improved variants of ICP suffer from converging on local minima. The EM-ICP \fixme{(abbreviation)} algorithm introduced by \citet{granger2006multi} overcomes this problem \fixme{at the cost of being computationally very intensive. (is this accurate?)}
 
-\citet{tamaki2010softassign} make EM-ICP more efficient by implementing the computation on GPU using CUDA. The speed is unfortunately still not fast enough for real-time usage on current hardware.
+\fixme{\citet{tamaki2010softassign} make EM-ICP more efficient by implementing the computation on GPU using CUDA. The speed is unfortunately still not fast enough for real-time usage on current hardware.}
 
 Another interesting improvement over ICP is suggested by \citet{tykkala2011direct}. Their algorithm, Direct Iterative Closest Point, is very well suited for Simultaneous Localization and Mapping (SLAM) using an RGB-D sensor. Direct ICP stores all data in 2D images, thus avoiding expensive 3D nearest neighbor searches. This makes it computationally much cheaper than traditional ICP. The change in approach from 3D point coordinate matching to computing transformations between 2D images also enables using RGB as well as depth data for computation. Using both simultaneously can make the algorithm more robust and accurate. This is demonstrated for deriving the trajectory and pose of a moving camera in static scenery. The downside is that a balancing factor $\lambda$ between the visual and depth data needs to be chosen.
 
@@ -72,7 +72,7 @@ Currently, the most promising work at creating personalized human avatars has be
 
 \citep{charpentier2011accurate}
 
-The work of \citet{hirshbergc2011evaluating} focuses on aligning human laser scans from different directions. They develop methods for automatically locating the two ankles and the sellion landmark, defined as ``Point of greatest indentation of the nasal root depression'' \citep{blackwell2002civilian}. These three points are shown to be enough for accurate scan alignment of data in the CAESAR dataset \citep{robinette2002civilian}.
+\fixme{The work of \citet{hirshbergc2011evaluating} focuses on aligning human laser scans from different directions. They develop methods for automatically locating the two ankles and the sellion landmark, defined as ``Point of greatest indentation of the nasal root depression'' \citep{blackwell2002civilian}. These three points are shown to be enough for accurate scan alignment of data in the CAESAR dataset \citep{robinette2002civilian}.}
 
 (human pose)
 \citep{baak2011data}
