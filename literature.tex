@@ -47,6 +47,13 @@ The algorithm developed by \citet{huang2011visual} is not point cloud alignment 
 \citep{anguelov2005scape}
 \citep{baek2012parametric}
 
+
+\fixme{choose the subsection for the following}
+
+\textit{Morphable models} are defined by \citet{schneider2010fitting} to mean parametric models of 3D shape, created by applying Principal Component Analysis (PCA) on a database of meshes. As a single PCA model can only cover a limited subspace of shapes, complex shapes can be split into parts, creating in essence a multi-PCA model of the overall shape. Fitting such a morphable model to a shape is easy if the target representation is semantically consistent with the model. That is, the target should be a mesh that has the same number of vertices in positions corresponding to the model. Practically, this is rarely true, and a method for finding the correspondences is needed. \citet{schneider2010fitting} describe the classical way of fitting a morphable model to a point cloud that consists of three steps. First, a template mesh corresponding to the vertex structure of the morphable model must be fitted to the point cloud using a non-rigid registration method. This template is used to find points corresponding to vertices. The topology is then solved and the morphable model can be fitted. A better approach is suggested, where all the pose and shape constraints are written as a matrix equation. Then an iterative optimization is run, where the pose is optimized by an ICP-like method, parameter changes are solved from the matrix equation using singular value decomposition and then the parameters are updated. The optimization is stopped when the mean squared error becomes stable between iterations.
+
+A morphable human head model and laser scans of faces are used as an example to show that simultaneous optimization indeed converges faster and produces a more accurate result than using an initial pose optimization and then only fitting shape. Additionally, the 3D head model fitting is shown to work with a mugshot-type set of two 2D images from two directions, by adding more equations to solve for depth.
+
 \subsection{MakeHuman}
 
 \fixme{should this be here?}
@@ -69,8 +76,6 @@ The demonstrated avatar creation method is unwieldy considering that manual alig
 (human mesh)
 
 Currently, the most promising work at creating personalized human avatars has been by \citet{weiss2011home}. Their approach uses the SCAPE body model \citep{anguelov2005scape}. This makes for very good reconstruction accuracy and excellent \fixme{rendered shapes (muscle deformation according to pose etc)}. However, the evaluation is slow\fixme{ at approximately 65 minutes for a human model, according to \citet{tongscanning}} and the SCAPE model needs to be trained with a large amount of data beforehand.
-
-\citep{schneider2010fitting}
 
 \citet{ahmed2005automatic} presented a method for creating human avatars from multi-view video. The process is automatic and the avatars are visually quite accurate. For capturing, a frame-synchronized setup of eight cameras is used. The human is segmented from each view, yielding eight silhouettes. A template body model is deformed so that it optimally fits all the silhouettes. The template consists of 16 parts, each of which is controlled by four B-splines. The deformations are optimized for each viewpoint, and for improved accuracy, using several non-subsequent frames. According to the authors, about five automatically chosen time steps are sufficient, and thus just a few seconds of multi-view video is required. The computation of the human model takes about 15 minutes. After the shape is personalized, it is textured by projecting the images back to the constructed model. The method takes occlusion into account and combines textures over several time steps. The texture reconstruction takes around 40 seconds. As an additional feature, the user can manually select frames with interesting facial expressions. These expressions can then be changed on the avatar. \citep{ahmed2005automatic}
 
