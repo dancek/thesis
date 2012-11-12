@@ -13,7 +13,9 @@
 
 \usepackage[english]{babel}
 
-\usepackage[square]{natbib}
+% Bibliography stuff
+\usepackage[style=authoryear,natbib=true]{biblatex}
+\bibliography{sources.bib}
 
 % insert a 'Bibliography' item in TOC
 \usepackage[nottoc]{tocbibind}
@@ -103,9 +105,6 @@
 % 1 is normal (no extra space), 1.3 is about one-half more space, and
 % 1.6 is about double line spacing.  
 \linespread{1.3}
-
-% Bibliography style
-\bibliographystyle{plainnat}
 
 
 % The preamble ends here, and the document begins. 
@@ -203,7 +202,7 @@ We propose a method for generating an avatar that looks similar to the user and 
 
 % TODO: should all sources be displayed?
 \nocite{*}
-\bibliography{sources}
+\printbibliography
 
 
 % Appendices go here
