@@ -8,15 +8,21 @@ In this chapter, the work towards modeling a moving human is described. Starting
 
 The first step towards achieving anything with a Kinect is, obviously, to read its sensor data to the computer. This is not trivially easy considering that Kinect was originally only meant to be an Xbox 360 accessory. When the work on this thesis began, at least three different drivers for Kinect were available. Each of them were installed and tested by writing trivial software using them.
 
+\fixme{are these appropriate in here, or should some parts be moved to Related Work?}
+
 \subsection{Microsoft Kinect SDK}
 
 The obvious solution for developing software that uses Kinect is the Microsoft Kinect for Windows Software Development Kit (SDK)\footnote{The Microsoft Kinect SDK is available at \url{http://www.microsoft.com/en-us/kinectforwindows/}.}. Kinect is a Microsoft product, so Microsoft will surely supply the SDK, right? This wasn't true to begin with, and Microsoft actually only released the SDK after open-source drivers had gained momentum.
 
-The Microsoft SDK is available for Windows 7 and later. It supports development in C++/CLI, C# or Visual Basic .NET. A multitude of features have been included in the SDK. For example, skeleton tracking, face tracking and audio input are supported.
+The Microsoft SDK is available for Windows 7 and later. It supports development in C++/CLI, C\# or Visual Basic .NET. A multitude of features have been included in the SDK. For example, skeleton tracking, face tracking and audio input are supported.
 
 License restrictions in the Microsoft Kinect SDK make it unappealing. For example, using a Microsoft Kinect for Xbox 360 is allowed for development, but distributing created software for use with it is forbidden. Only using a Microsoft Kinect for Windows sensor is allowed for end-users. This is required to be ``clearly stated'' in all materials related to any created application. Moreover, the end-user license agreement (EULA) forbids applying a copyleft license to applications created using the Microsoft SDK. \citep{kinectEULA}
 
-\subsection{libfreenect}
+Skeleton tracking using the Microsoft SDK was tested by compiling a sample application and making modifications to it. The API seems to be good and usable, and the skeleton tracking methods work quite well. Fast movement and occlusion caused problems such as the skeleton jumping into weird poses for a short time.
+
+\subsection{OpenKinect}
+
+OpenKinect\footnote{\url{http://openkinect.org/}} is an open community project aiming at creating open-source software for using Kinect. The main focus of the project is the libfreenect library, available under the terms of Apache License 2.0 \citep{Apache2} or the GNU General Public License (GPL) 2.0 \citep{GPL2}.
 
 \subsection{OpenNI}
 
