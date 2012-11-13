@@ -2,7 +2,7 @@
 % TODO: remember to justify the choices made
 % also compare different possibilities
 
-In this chapter, the work towards modeling a moving human is described. Starting out, there was much to be figured out and tried. Many questions were not only unanswered but still unasked. The target was already defined: a rigged 3D mesh of the user. The tools available were a Microsoft Kinect and a desktop computer.
+In this chapter, the work towards modeling a moving human is described. Starting out, there was much to be figured out and tried. Many questions were not only unanswered but still unasked. The target was already defined: a rigged 3D mesh of the user. The tools available were a Microsoft Kinect for Xbox 360 and a desktop computer.
 
 \section{Obtaining point cloud data}
 
@@ -10,14 +10,19 @@ The first step towards achieving anything with a Kinect is, obviously, to read i
 
 \subsection{Microsoft Kinect SDK}
 
-The obvious solution for developing software that uses Kinect is the Microsoft Kinect SDK\footnote{The Microsoft Kinect SDK is available at \url{http://www.microsoft.com/en-us/kinectforwindows/}.}. Kinect is a Microsoft product, so Microsoft will surely supply the SDK, right? This wasn't true to begin with, and Microsoft actually only released the SDK after open-source drivers had gained momentum.
+The obvious solution for developing software that uses Kinect is the Microsoft Kinect for Windows Software Development Kit (SDK)\footnote{The Microsoft Kinect SDK is available at \url{http://www.microsoft.com/en-us/kinectforwindows/}.}. Kinect is a Microsoft product, so Microsoft will surely supply the SDK, right? This wasn't true to begin with, and Microsoft actually only released the SDK after open-source drivers had gained momentum.
+
+The Microsoft SDK is available for Windows 7 and later. It supports development in C++/CLI, C# or Visual Basic .NET. A multitude of features have been included in the SDK. For example, skeleton tracking, face tracking and audio input are supported.
+
+License restrictions in the Microsoft Kinect SDK make it unappealing. For example, using a Microsoft Kinect for Xbox 360 is allowed for development, but distributing created software for use with it is forbidden. Only using a Microsoft Kinect for Windows sensor is allowed for end-users. This is required to be ``clearly stated'' in all materials related to any created application. Moreover, the end-user license agreement (EULA) forbids applying a copyleft license to applications created using the Microsoft SDK. \citep{kinectEULA}
 
 \subsection{libfreenect}
 
 \subsection{OpenNI}
 
 The OpenNI library \citep{OpenNI}
-was used for data acquisition. The actual sensor used was Microsoft Kinect.
+
+OpenNI was finally chosen to be used for data acquisition in this work.
 
 \section{Body part segmentation}
 
