@@ -118,10 +118,6 @@ The availability of an open source implementation has allowed further improvemen
 
 Another issue pointed out in KinectFusion is that ICP cannot work without geometric features. This shortcoming is alleviated by including FOVIS, the visual odometry algorithm as an alternative to ICP. This is shown to work in real-time, though its CPU implementation is slightly slower than the GPU implementation of ICP. \citep{Whelan12rssw}
 
-Shortcomings in Kintinuous include lack of loop closure and map reintegration.
+Kintinuous was further improved by \citet{Whelan12tr} by adding an image-based tracking algorithm similar to \citep{tykkala2011direct} and the initial step in \citep{huang2011visual}. The three different algorithms used for odometry (ICP, FOVIS and image-based ``RGBD'') can be combined. ICP and RGBD combined can work in real-time and yield a more accurate trajectory than any of the algorithms alone. \citep{Whelan12tr}
 
-\fixme{Kintinuous: moving TSDF, FOVIS; improvements: ICP+RGBD+FOVIS etc}
-
-Later on, Kintinuous has been further improved. 
-\citep{Whelan12tr}
-
+Features still lacking in Kintinuous include loop closure and map reintegration. In practice, moving the sensor back to an area already visited is problematic. Since no map reintegration is implemented, the area will be overwritten. Drift may also be significant---no intelligent measures are taken to correct the error when an area is revisited.
