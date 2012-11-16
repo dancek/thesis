@@ -30,6 +30,15 @@ The OpenNI library \citep{OpenNI}
 
 OpenNI was finally chosen to be used for data acquisition in this work.
 
+\section{Experiments with point clouds}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{pcd-plain.png}
+    \caption{A point cloud constructed from a single frame of Kinect data. The cloud is captured and saved in the .pcf format (Point Cloud Format) that PCL uses. The viewer used is part of PCL.}
+    \label{fig:pcd-plain}
+\end{figure}
+
 \section{Body part segmentation}
 
 Before any attempts at human body reconstruction can be made, the body needs to be detected from the RGB-D image. % mention 'segmentation'
@@ -45,6 +54,13 @@ Using the skeleton data, we segment the point cloud according to body parts.
 
 \fixme{TODO: what do we really have? what are the right English terms?
 legs, feet, forearms, shoulders, head, torso, hip}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{pcd-segmented.png}
+    \caption{The same point cloud as in \ref{fig:pcd-plain}, with user segmented from the background, and further segmented into individual body parts.}
+    \label{fig:pcd-segmented}
+\end{figure}
 
 \section{Point cloud alignment}
 
@@ -84,9 +100,23 @@ MakeHuman is still in development and at the time of writing was undergoing some
 
 \begin{figure}
     \centering
+    \includegraphics[width=\textwidth]{makehuman-measurement.png}
+    \caption{MakeHuman with the Measurement plugin active. Waist circumference is selected. The white line shows where the circumference is measured.}
+    \label{fig:makehuman-measurement}
+\end{figure}
+
+\begin{figure}
+    \centering
     \includegraphics[width=\textwidth]{mhtargets.png}
     \caption{The reimplementation of the MakeHuman target system, showing the unmodified base mesh.}
     \label{fig:mhtargets}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{mhtargets-fat.png}
+    \caption{The model in \ref{fig:mhtargets} with changed front chest, bust, underbust, waist and hip measurements.}
+    \label{fig:mhtargets-fat}
 \end{figure}
 
 \section{Texturing}
