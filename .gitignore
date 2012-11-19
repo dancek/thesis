@@ -27,4 +27,6 @@
 *.maf
 *.mtc
 *.mtc0
+thesis-blx.bib
+thesis.run.xml
 vendor/
