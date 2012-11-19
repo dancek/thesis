@@ -24,6 +24,10 @@ Skeleton tracking using the Microsoft SDK was tested by compiling a sample appli
 
 OpenKinect\footnote{\url{http://openkinect.org/}} is an open community project aiming at creating open-source software for using Kinect. The main focus of the project is the libfreenect library, available under the terms of Apache License 2.0 \citep{Apache2} or the GNU General Public License (GPL) 2.0 \citep{GPL2}.
 
+OpenKinect is made from scratch by hobbyists, and remains very low-level. It is possible to read video and depth data, but combining them to create point clouds is not supported by libfreenect. \citet{burrus2010} shows a workable calibration procedure, and also shares the measured calibration parameters for others to use. \citet{fisher2010} shows example code of using these parameters to transform video and depth images to colored points in world coordinates.
+
+Tilting the Kinect using the built-in motor and changing the color of the led are also supported by libfreenect. While not particularly useful in most applications, these features are notable as they are missing from OpenNI, the other freely available driver.
+
 \subsection{OpenNI}
 
 The OpenNI library \citep{OpenNI}
