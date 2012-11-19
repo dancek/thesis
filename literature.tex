@@ -34,9 +34,7 @@ OpenNI was tested using the SimpleOpenNI \citep{simpleopenni} wrapper for Proces
 
 \section{Point cloud alignment} \label{literature.alignment}
 
-\fixme{mention rigid and non-rigid registration}
-
-\fixme{Why is point cloud alignment interesting?}
+% TODO: mention rigid and non-rigid registration
 
 The Iterative Closest Point (ICP) algorithm is commonly used for aligning two point clouds. The algorithm was originally presented by \citet{besl1992method} and \citet{chen1991object} The algorithm in pseudocode is shown in Algorithm \ref{literature.pseudoicp}. It works by finding corresponding points from the two point clouds. Then a rigid transformation that minimizes the error between the corresponding point pairs is searched for. This transformation is then applied. Iterating this multiple times, a local optimum should be found.
 
@@ -66,7 +64,7 @@ However, even these improved variants of ICP suffer from converging on local min
 
 Another interesting improvement over ICP is suggested by \citet{tykkala2011direct}. Their algorithm, Direct Iterative Closest Point, is very well suited for Simultaneous Localization and Mapping (SLAM) using an RGB-D sensor. Direct ICP stores all data in 2D images, thus avoiding expensive 3D nearest neighbor searches. This makes it computationally much cheaper than traditional ICP. The change in approach from 3D point coordinate matching to computing transformations between 2D images also enables using RGB as well as depth data for computation. Using both simultaneously can make the algorithm more robust and accurate. This is demonstrated for deriving the trajectory and pose of a moving camera in static scenery. The downside is that a balancing factor $\lambda$ between the visual and depth data needs to be chosen.
 
-%\citep{chui2003new} TPS-RPM \citep{yang2011thin}
+% TODO: \citep{chui2003new} TPS-RPM \citep{yang2011thin}
 
 
 The algorithm developed by \citet{huang2011visual} is not point cloud alignment as such, but as it is used to replace ICP in some cases \citep{Whelan12rssw}, it deserves a mention. The article leaves the method unnamed, but an implementation called FOVIS \citep{fovis} is made freely available by the authors. \citet{huang2011visual} aim to create a robust system for stabilizing and controlling an autonomous micro air vehicle (MAV). Their chosen hardware is a quadrotor MAV that carries a stripped-down Kinect and a small flight computer comprising a 1.86GHz Intel Core 2 Duo processor and 4GB of RAM (Random Access Memory). For autonomous flight, \citeauthor{huang2011visual} develop a visual odometry algorithm that is capable of tracking camera pose and trajectory in real time on the aforementioned hardware--more specifically, computation takes roughly 25ms per frame. The algorithm is image-based and uses RGB-D input, of which the RGB image is converted to grayscale. To enable feature detection at different scales, a Gaussian pyramid is created--in practice, a series of scaled-down images with Gaussian blur. The FAST (Features from Accelerated Segment Test) feature detector \citep{rosten2006machine} is used to extract features at each scale level. Features are matched between frames by computing sum of absolute differences of their feature descriptors, choosing the minimally different features as matches. An initial rotation estimate is calculated by a simple direct pixel error minimization method presented by \citet{mei2009}, and used to restrict feature matches only to the ones that correspond to the general rotation. The matches are further refined by finding the maximal amount of features that are consistent with each other given their locations (using the depth data), assuming a rigid, static scenery. After the feature matching is complete, the locations of each feature are used to find the new camera pose by minimizing feature reprojection error. This error measure is used to still drop possible outlier features, and the pose optimization is done again. Additionally, keyframes are used to reduce local drift in trajectory. As long as the camera motion between keyframe and current frame can be computed with enough inlier features, this result is also considered. When this is no longer possible, the current frame is set as the new keyframe. \citep{huang2011visual}
@@ -75,19 +73,16 @@ The algorithm developed by \citet{huang2011visual} is not point cloud alignment 
 \section{Modeling the human body}
 
 \subsection{Human anatomy}
-Human anatomy is the obvious basis for any artificial model of the human body. Anatomy is not a simple matter; the main anatomical features according to \fixme{Gray's Anatomy} \citep{pick1977gray} are the skeleton, the articulations, muscles and fasciae, the blood-vascular system, the nervous system and the organs (grouped into six categories). Considering every detail is very impractical--a visually convincing human can be drawn without taking the nervous system into account, for example.
+Human anatomy is the obvious basis for any artificial model of the human body. Anatomy is not a simple matter; the main anatomical features according to \citetitle{pick1977gray} \citep{pick1977gray} are the skeleton, the articulations, muscles and fasciae, the blood-vascular system, the nervous system and the organs (grouped into six categories). Considering every detail is very impractical--a visually convincing human can be drawn without taking the nervous system into account, for example.
 
-Even though a simplified view of anatomy is enough for visually representing humans, the basics are important. Anatomical knowledge of humans has been employed by visual artists at least since the days of Leonardo da Vinci, who did dissections to gain understanding of the human body \fixme{source}. This was almost three decades before Vesalius, ``the founder of modern human anatomy'' published his seven-volume De humani corporis fabrica \citep{vesalius1543}. \citet{hogarth2003} claims that Titian, the contemporary artist Vesalius asked to produce illustrations, actually knew the visual implications of anatomy better than Vesalius. It is then sensible to consider \term{artistic anatomy} different from \term{medical anatomy}, though they do both exist based on the same truths \citep{hogarth2003}.
+Even though a simplified view of anatomy is enough for visually representing humans, the basics are important. Anatomical knowledge of humans has been employed by visual artists at least since the days of Leonardo da Vinci, who did dissections to gain understanding of the human body \fixme{(source)}. This was almost three decades before Vesalius, ``the founder of modern human anatomy'' published his seven-volume De humani corporis fabrica \citep{vesalius1543}. \citet{hogarth2003} claims that Titian, the contemporary artist Vesalius asked to produce illustrations, actually knew the visual implications of anatomy better than Vesalius. It is then sensible to consider \term{artistic anatomy} different from \term{medical anatomy}, though they do both exist based on the same truths \citep{hogarth2003}.
 
 To date, several guides to human anatomy for artists have been published \autocites{hogarth2003}{simblet2001}{goldfinger1991}. They vary in depth, but the general requirements for drawing plausible human bodies seem to be an understanding of the skeleton, muscles and skin. Books focusing on just drawing the human form without focus on anatomy still often point this requirement out \autocites{ediciones2004}{loomis1943figure}.
 
-\fixme{TODO: what's important to artists?}
-\citep{loomis1943figure}
+\fixme{TODO: expand this section by writing about one or two sources in more depth}
 
 
 \subsection{Human body models}
-
-\fixme{choose the subsection for the following}
 
 \textit{Morphable models} are defined by \citet{schneider2010fitting} to mean parametric models of 3D shape, created by applying Principal Component Analysis (PCA) on a database of meshes. As a single PCA model can only cover a limited subspace of shapes, complex shapes can be split into parts, creating in essence a multi-PCA model of the overall shape. Fitting such a morphable model to a shape is easy if the target representation is semantically consistent with the model. That is, the target should be a mesh that has the same number of vertices in positions corresponding to the model. Practically, this is rarely true, and a method for finding the correspondences is needed. \citet{schneider2010fitting} describe the classical way of fitting a morphable model to a point cloud that consists of three steps. First, a template mesh corresponding to the vertex structure of the morphable model must be fitted to the point cloud using a non-rigid registration method. This template is used to find points corresponding to vertices. The topology is then solved and the morphable model can be fitted. A better approach is suggested, where all the pose and shape constraints are written as a matrix equation. Then an iterative optimization is run, where the pose is optimized by an ICP-like method, parameter changes are solved from the matrix equation using singular value decomposition and then the parameters are updated. The optimization is stopped when the mean squared error becomes stable between iterations.
 
@@ -97,12 +92,10 @@ The Shape Completion and Animation of People (SCAPE) method developed by \citet{
 
 The main limitation of models generated by SCAPE is that the correlation between body shape and muscle deformation cannot be modeled, as the two are decoupled. Practically this means that bodies with a lot of muscular tissue show deformations similar to those with a lot of fatty tissue. Moreover, the deformations are only dependent on joint angles, meaning flexed and relaxed muscles can't be differentiated in the same pose--this also restricts face modeling, as facial expressions are caused by muscular activity, not joint rotations. \citep{anguelov2005scape}
 
-\citep{baek2012parametric}
+% TODO: \citep{baek2012parametric}
 
 
 \subsection{MakeHuman}
-
-\fixme{should this be here?}
 
 MakeHuman \citep{makehuman} is an open source software application for 3D human modeling.
 
@@ -121,6 +114,8 @@ MakeHuman has an androgynous base mesh that supposedly depicts an average human.
     \caption{A young female modeled using MakeHuman.}
     \label{fig:makehuman-female}
 \end{figure}
+
+\fixme{TODO: explain MakeHuman implementation; refer to the images.}
 
 \section{3D reconstruction}
 
