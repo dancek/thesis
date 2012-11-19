@@ -2,8 +2,37 @@
 
 \fixme{Refer to relevant sources a topic at a time}
 
-% libraries
-% \citep{OpenNI} \citep{NITE} \citep{PCL}
+\section{Sensor driver software} \label{literature.drivers}
+
+When the work on this thesis began, at least three different drivers for Kinect were available. 
+
+\subsection{Microsoft Kinect SDK}
+
+The obvious solution for developing software that uses Kinect is the Microsoft Kinect for Windows Software Development Kit (SDK)\footnote{The Microsoft Kinect SDK is available at \url{http://www.microsoft.com/en-us/kinectforwindows/}.}. Kinect is a Microsoft product, so Microsoft will surely supply the SDK, right? This wasn't true to begin with, and Microsoft actually only released the SDK after open-source drivers had gained momentum.
+
+The Microsoft SDK is available for Windows 7 and later. It supports development in C++/CLI, C\# or Visual Basic .NET. A multitude of features have been included in the SDK. For example, skeleton tracking, face tracking and audio input are supported.
+
+License restrictions in the Microsoft Kinect SDK make it unappealing. For example, using a Microsoft Kinect for Xbox 360 is allowed for development, but distributing created software for use with it is forbidden. Only using a Microsoft Kinect for Windows sensor is allowed for end-users. This is required to be ``clearly stated'' in all materials related to any created application. Moreover, the end-user license agreement (EULA) forbids applying a copyleft license to applications created using the Microsoft SDK. \citep{kinectEULA}
+
+\subsection{OpenKinect}
+
+OpenKinect\footnote{\url{http://openkinect.org/}} is an open community project aiming at creating open-source software for using Kinect. The main focus of the project is the libfreenect library, available under the terms of Apache License 2.0 \citep{Apache2} or the GNU General Public License (GPL) 2.0 \citep{GPL2}.
+
+OpenKinect is made from scratch by hobbyists, and remains very low-level. It is possible to read video and depth data, but combining them to create point clouds is not supported by libfreenect. \citet{burrus2010} shows a workable calibration procedure, and also shares the measured calibration parameters for others to use. \citet{fisher2010} shows example code of using these parameters to transform video and depth images to colored points in world coordinates.
+
+Tilting the Kinect using the built-in motor and changing the color of the led are also supported by libfreenect. While not particularly useful in most applications, these features are notable as they are missing from OpenNI, the other freely available driver.
+
+\subsection{OpenNI}
+
+The OpenNI (Open Natural Interaction) library \citep{OpenNI} is developed by PrimeSense, which also manufactures the sensor hardware used in Microsoft Kinect and the Asus Xtion series. OpenNI is available under the GNU Lesser General Public License (LGPL), version 3 \citep{LGPL3}. Packages of OpenNI are provided for Windows, Ubuntu and Mac OS X.
+
+OpenNI supports embedding middleware that can greatly enhance functionality of the library. PrimeSense leverage this architecture by supplying a proprietary middleware called NITE (Natural Interaction Technology for End-user) \citep{NITE}. Binary packages of NITE are available for Windows, Ubuntu and Mac OS X on the download section of the OpenNI website \citep{openniweb}. No license terms are mentioned on the download page nor during the installation. In the past, NITE came with an EULA restricting it to only be used with sensors manufactured by PrimeSense. While the licensing is slightly unclear, the openness of OpenNI leaves hope for an open source middleware replacing NITE.
+
+OpenNI has support for different kinds of input from sensors, including audio, video, depth image and point clouds. NITE includes more advanced features such as user segmentation and skeleton reconstruction.
+
+OpenNI was tested using the SimpleOpenNI \citep{simpleopenni} wrapper for Processing \citep{processing}. The included examples were plentiful and diverse, and allowed for quickly trying out own ideas (probably in part due to familiarity with the Processing environment).
+
+
 \section{Point cloud alignment} \label{literature.alignment}
 
 \fixme{mention rigid and non-rigid registration}
