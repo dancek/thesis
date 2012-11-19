@@ -10,6 +10,7 @@ The first step towards achieving anything with a Kinect is, obviously, to read i
 
 Skeleton tracking using the Microsoft SDK was tested by compiling a sample application and making modifications to it. The API seems to be good and usable, and the skeleton tracking methods work quite well. Fast movement and occlusion caused problems such as the skeleton jumping into weird poses for a short time.
 
+OpenNI was tested using the SimpleOpenNI \citep{simpleopenni} wrapper for Processing \citep{processing}. The included examples were plentiful and diverse, and allowed for quickly trying out own ideas (probably in part due to familiarity with the Processing environment).
 
 Of the three drivers, libfreenect was the easiest to start working with. By installing the OpenKinect plugin for Processing \citep{shiffman2010} \citep{processing}, the Kinect was up and running in minutes. Development was easy given the bundled examples, which include creating point clouds as shown by \citet{fisher2010}. Apparently the functionality is still quite low-level, and thus not very suitable for trying to capture human body details.
 
