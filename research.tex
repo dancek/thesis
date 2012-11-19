@@ -28,15 +28,21 @@ OpenKinect is made from scratch by hobbyists, and remains very low-level. It is 
 
 Tilting the Kinect using the built-in motor and changing the color of the led are also supported by libfreenect. While not particularly useful in most applications, these features are notable as they are missing from OpenNI, the other freely available driver.
 
-Of the three drivers, libfreenect was the easiest to start working with. By installing the OpenKinect plugin for Processing \citep{shiffman2010}, the Kinect was up and running in minutes. Development was easy given the bundled examples, which include creating point clouds as shown by \citet{fisher2010}. Apparently the functionality is still quite low-level, and thus not very suitable for trying to capture human body details.
+Of the three drivers, libfreenect was the easiest to start working with. By installing the OpenKinect plugin for Processing \citep{shiffman2010} \citep{processing}, the Kinect was up and running in minutes. Development was easy given the bundled examples, which include creating point clouds as shown by \citet{fisher2010}. Apparently the functionality is still quite low-level, and thus not very suitable for trying to capture human body details.
 
 \subsection{OpenNI}
 
-The OpenNI (Open Natural Interaction) library \citep{OpenNI} is developed by PrimeSense, which also manufactures the sensor hardware used in Microsoft Kinect and the Asus Xtion series. OpenNI is available under the GNU Lesser General Public License (LGPL), version 3 \citep{LGPL3}.
+The OpenNI (Open Natural Interaction) library \citep{OpenNI} is developed by PrimeSense, which also manufactures the sensor hardware used in Microsoft Kinect and the Asus Xtion series. OpenNI is available under the GNU Lesser General Public License (LGPL), version 3 \citep{LGPL3}. Packages of OpenNI are provided for Windows, Ubuntu and Mac OS X.
 
-OpenNI supports embedding middleware that can greatly enhance functionality of the library. PrimeSense leverage this architecture by supplying a proprietary middleware called NITE\footnote{NITE seems to be an acronym, but its meaning is not commonly disclosed.} \citep{NITE}. 
+OpenNI supports embedding middleware that can greatly enhance functionality of the library. PrimeSense leverage this architecture by supplying a proprietary middleware called NITE (Natural Interaction Technology for End-user) \citep{NITE}. Binary packages of NITE are available for Windows, Ubuntu and Mac OS X on the download section of the OpenNI website \citep{openniweb}. No license terms are mentioned on the download page nor during the installation. In the past, NITE came with an EULA restricting it to only be used with sensors manufactured by PrimeSense. While the licensing is slightly unclear, the openness of OpenNI leaves hope for an open source middleware replacing NITE.
 
-OpenNI was finally chosen to be used for data acquisition in this work.
+OpenNI has support for different kinds of input from sensors, including audio, video, depth image and point clouds. NITE includes more advanced features such as user segmentation and skeleton reconstruction.
+
+OpenNI was tested using the SimpleOpenNI \citep{simpleopenni} wrapper for Processing \citep{processing}. The included examples were plentiful and diverse, and allowed for quickly trying out own ideas (probably in part due to familiarity with the Processing environment).
+
+Limited resources were allocated for this research project, so practically skeleton tracking was a requirement for the sensor software. The choice was then between completely proprietary, single-platform Microsoft SDK with a highly restrictive license and the partially proprietary, multi-platform OpenNI/NITE combination with unclear licensing. In preliminary testing, differences in the accuracy of skeleton tracking were minor.
+
+OpenNI was finally chosen to be used for data acquisition in this work. The Microsoft SDK would probably have been similarly useful, but was not chosen because OpenNI allows for multiple platforms and is more open.
 
 \section{Experiments with point clouds}
 
