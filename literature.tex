@@ -129,6 +129,7 @@ where $i$ is the index of the vertex, $\vec{v}_i$ are the calculated coordinates
 Using this system, the order of the targets does not matter. The mesh need not be recalculated from the beginningon each change, either---only the difference caused by changed targets must be calculated and added to the current coordinates.
 
 \section{3D reconstruction}
+% TODO: refactor (perhaps Human 3d reconstruction + extras?)
 
 \citet{fabio2003point} overviews the process of converting a point cloud to a 3D polygon mesh and the problems involved. The main contributions of the paper are defining terminology, classifying algorithms and describing the state-of-the-art methods in 2003. No original research is described. Still, the article is helpful in obtaining a very general idea of the process of 3D reconstruction from point cloud data.
 
@@ -141,6 +142,7 @@ The demonstrated avatar creation method is unwieldy considering that manual alig
 \newtopic
 
 Currently, the most promising work at creating personalized human avatars has been by \citet{weiss2011home}. Their approach uses the SCAPE body model \citep{anguelov2005scape}. This makes for very good reconstruction accuracy and excellent representation of the body shape, including realistic deformations in different poses. However, the evaluation is slow at approximately 65 minutes for a human model, according to \citet{weiss2011home} and the SCAPE model needs to be trained with a large amount of data beforehand.
+% TODO: expand this
 
 \newtopic
 
