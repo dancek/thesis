@@ -163,6 +163,27 @@ The work of \citet{hirshbergc2011evaluating} focuses on aligning human laser sca
 
 \section{KinectFusion}
 
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{kinfu-ray.png}
+    \caption{Kinfu showing a raytraced view of its TSDF grid, with the camera at the same position as the Kinect is.}
+    \label{fig:kinfu-ray}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{kinfu-depth.png}
+    \caption{The raw depth image from Kinect, at the same moment as the raytraced image in Figure~\ref{fig:kinfu-ray} was drawn.}
+    \label{fig:kinfu-depth}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{kinfu-mesh.png}
+    \caption{Kinfu showing the mesh generated from the TSDF just moments earlier, with the camera in the same position as in Figure~\ref{fig:kinfu-ray}.}
+    \label{fig:kinfu-mesh}
+\end{figure}
+
 KinectFusion is a real-time 3D reconstruction system that uses data from a moving Kinect sensor. It performs camera position and pose tracking, surface reconstruction and rendering. \citep{izadi2011kinectfusion}
 
 The implementation works on consumer hardware by way of general-purpose computing on graphics processing units (GPGPU). More specifically, KinectFusion utilizes fully parallel tracking and mapping algorithms that are very efficient on the GPU (graphics processing unit) \citep{newcombe2011kinectfusion}.
@@ -183,10 +204,3 @@ Kintinuous was further improved by \citet{Whelan12tr} by adding an image-based t
 
 Features still lacking in Kintinuous include loop closure and map reintegration. In practice, moving the sensor back to an area already visited is problematic. Since no map reintegration is implemented, the area will be overwritten. Drift may also be significant---no intelligent measures are taken to correct the error when an area is revisited.
 
-% TODO: split into three different images
-\begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{kinfu-mesh.png}
-    \caption{Kinfu showing three different views of a desk: the raytraced TSDF, the raw Kinect depth view, and a mesh generated from the TSDF. \fixme{TODO: split this into three different images and refer to the images}}
-    \label{fig:kinfu-mesh}
-\end{figure}
