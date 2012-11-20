@@ -65,6 +65,12 @@ To allow for combining data from multiple frames, the observations (point clouds
 
 \subsection{Kinfu and automatic rigging}
 
+\begin{figure}
+    \centering
+    \fixme{TODO: picture of the rigged mesh}
+    \label{fig:hannu-mesh}
+\end{figure}
+
 \citet{charpentier2011accurate} shows how a rigged mesh model of the user can be made by manually aligning shots from different directions and then using an automatic rigging algorithm. \citeauthor{charpentier2011accurate} claims this approach would become very easy, if the KinectFusion system were available.
 
 As the Kinfu implementation was available, this approach was tested in practice. The amount of manual work required turned out to still be surprisingly large.
@@ -75,7 +81,13 @@ The actual scanning requires two persons: one to be scanned and one to scan. The
 
 The extracted mesh contains the subject and the surrounding area. The subject needs to be cropped for the automatic rigging. This requires manual mesh editing. In our test run, the full mesh was 140MB in size and comprised some 5 million vertices and 1.5 million faces. Editing this mesh made MeshLab a bit sluggish on a high-end desktop computer\footnote{Intel Core i7-3770, 16GB RAM, SSD and NVidia GTX670.}. For comparison, the same mesh was imported in Blender, after which Blender became stuck for about a minute and then showed the mesh while remaining quite unusable.
 
-\fixme{TODO: finish the story}
+After the mesh is cropped and only the human part remains, the actual editing can begin. Pinocchio needs a mesh that is closed and connected, and the one produced by Kinfu is very probably not. One possible approach to this problem is to uniformly sample a subset of the vertices and then use a mesh generation algorithm on those vertices. The downside is that some accuracy is lost, but on the other hand the regions with holes are nicely filled. Whatever approach is taken, it might take some trial and error to choose good algorithms and parameters. The computation is not instant, but not necessarily slow either, again depending on the exact methods used.
+
+With this manual editing of the mesh finished, it is time to complete the automatic rigging using Pinocchio. In our tests, the first two tries failed because Pinocchio expects the mesh to be oriented in a certain way. This is not difficult to fix, but manual intervention is still needed at this stage.
+
+Finally, Pinocchio successfully rigged the mesh and a walking animation of the user was seen on the screen---quite astonishing! Minor details such as slightly wrong placement of the shoulder joints made the animation a little unnatural, but the result still causes amazement. The mesh also has rough surface details, caused by drift in the camera position and lack of loop closure in Kinfu. This is shown in figure~\ref{fig:hannu-mesh}.
+
+All in all, the amount of manual work required to create a rigged mesh from scratch was about an hour with some earlier experience of the tools. The process could possibly be automated, but implementing such an automatic system is far from trivial. The scanning phase would still necessarily need another person to move the Kinect around, and the time requirements would probably be around a minute for scanning and five minutes for processing. The method is thus feasible, but not as easy as \citet{charpentier2011accurate} suggests.
 
 \subsection{Voxel grid}
 
