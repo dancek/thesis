@@ -27,6 +27,7 @@ OpenNI was finally chosen to be used for data acquisition in this work. The Micr
     \label{fig:pcd-plain}
 \end{figure}
 
+
 \section{Body part segmentation}
 
 Before any attempts at human body reconstruction can be made, the body needs to be detected from the RGB-D image. % mention 'segmentation'
@@ -61,6 +62,20 @@ To allow for combining data from multiple frames, the observations (point clouds
 \section{Mesh generation}
 
 \fixme{Alternative approaches, including the following}
+
+\subsection{Kinfu and automatic rigging}
+
+\citet{charpentier2011accurate} shows how a rigged mesh model of the user can be made by manually aligning shots from different directions and then using an automatic rigging algorithm. \citeauthor{charpentier2011accurate} claims this approach would become very easy, if the KinectFusion system were available.
+
+As the Kinfu implementation was available, this approach was tested in practice. The amount of manual work required turned out to still be surprisingly large.
+
+The software needed for this approach are the KinectFusion system for scanning the mesh, a mesh editor for making necessary changes in the mesh and an auto-rigging software. We used MeshLab and Pinocchio for the latter two purposes, as \citet{charpentier2011accurate} had also successfully employed them. At the time of writing, Kinfu and Pinocchio needed to be compiled manually. Both have command-line interfaces that take a little getting used to; similarly, MeshLab's GUI (Graphical User Interface) is slightly confusing for a beginner.
+
+The actual scanning requires two persons: one to be scanned and one to scan. The scanned subject needs to remain still while the other person carefully and slowly goes around them, slowly moving the Kinect so that as much of the body as possible can be seen. After this is done, the user presses a key to extract a mesh from the TSDF. This operation can only be completed if the GPU has at least 1.5 gigabytes of memory; otherwise, it's possible to change Kinfu source code to lower the TSDF resolution and recompile. The extracted mesh is then saved to disk by pressing another key.
+
+The extracted mesh contains the subject and the surrounding area. The subject needs to be cropped for the automatic rigging. This requires manual mesh editing. In our test run, the full mesh was 140MB in size and comprised some 5 million vertices and 1.5 million faces. Editing this mesh made MeshLab a bit sluggish on a high-end desktop computer\footnote{Intel Core i7-3770, 16GB RAM, SSD and NVidia GTX670.}. For comparison, the same mesh was imported in Blender, after which Blender became stuck for about a minute and then showed the mesh while remaining quite unusable.
+
+\fixme{TODO: finish the story}
 
 \subsection{Voxel grid}
 
