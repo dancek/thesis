@@ -67,8 +67,21 @@ To allow for combining data from multiple frames, the observations (point clouds
 
 \begin{figure}
     \centering
-    \fixme{TODO: picture of the rigged mesh}
-    \label{fig:hannu-mesh}
+    \begin{minipage}{0.49\textwidth}
+        \includegraphics[width=\textwidth]{pinocchio-right}
+    \end{minipage}
+    \begin{minipage}{0.49\textwidth}
+        \includegraphics[width=\textwidth]{pinocchio-left}
+    \end{minipage}
+    \caption{The mesh scanned using Kinfu and rigged using Pinocchio. The skeleton is shown in olive.}
+    \label{fig:hannu-front}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{pinocchio-back}
+    \caption{The back of the mesh shows inconsistencies in the right hand and leg.}
+    \label{fig:hannu-back}
 \end{figure}
 
 \citet{charpentier2011accurate} shows how a rigged mesh model of the user can be made by manually aligning shots from different directions and then using an automatic rigging algorithm. \citeauthor{charpentier2011accurate} claims this approach would become very easy, if the KinectFusion system were available.
@@ -85,7 +98,7 @@ After the mesh is cropped and only the human part remains, the actual editing ca
 
 With this manual editing of the mesh finished, it is time to complete the automatic rigging using Pinocchio. In our tests, the first two tries failed because Pinocchio expects the mesh to be oriented in a certain way. This is not difficult to fix, but manual intervention is still needed at this stage.
 
-Finally, Pinocchio successfully rigged the mesh and a walking animation of the user was seen on the screen---quite astonishing! Minor details such as slightly wrong placement of the shoulder joints made the animation a little unnatural, but the result still causes amazement. The mesh also has rough surface details, caused by drift in the camera position and lack of loop closure in Kinfu. This is shown in figure~\ref{fig:hannu-mesh}.
+Finally, Pinocchio successfully rigged the mesh and a walking animation of the user was seen on the screen---quite astonishing! Minor details such as slightly wrong placement of the shoulder joints made the animation a little unnatural, but the result as seen in figure~\ref{fig:hannu-front} still causes amazement. The mesh also has rough surface details, caused by drift in the camera position and lack of loop closure in Kinfu. This is shown in figure~\ref{fig:hannu-back}.
 
 All in all, the amount of manual work required to create a rigged mesh from scratch was about an hour with some earlier experience of the tools. The process could possibly be automated, but implementing such an automatic system is far from trivial. The scanning phase would still necessarily need another person to move the Kinect around, and the time requirements would probably be around a minute for scanning and five minutes for processing. The method is thus feasible, but not as easy as \citet{charpentier2011accurate} suggests.
 
@@ -99,7 +112,6 @@ The working hypothesis was that each body part could be treated as a static obje
 
 In practice, Kinfu doesn't work well with isolated limb data. This has multiple causes. \fixme{1) For full-body scanning the whole user must obviously fit in the picture. At the VGA resolution that Kinect uses, this leaves few pixels per limb. 2) The depth resolution of Kinect is about 1--2 centimeters at a distance suitable for full-body scanning. 3) ICP only uses surface features for alignment, not color data. As the individual body parts tend to be quite smooth, this is a problem.}
 
-% TODO: split into three different images
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{limbwise-head.png}
@@ -107,7 +119,6 @@ In practice, Kinfu doesn't work well with isolated limb data. This has multiple 
     \label{fig:limbwise-head}
 \end{figure}
 
-% TODO: split into three different images
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{limbwise-arm.png}
