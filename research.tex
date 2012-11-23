@@ -174,7 +174,7 @@ MakeHuman is still in development and at the time of writing was undergoing some
 
 The \term{target} system in MakeHuman (see section \ref{literature.makehuman}) was implemented in Processing. The base mesh was also modified to only include the parts that should be drawn, while keeping mesh indices the same. The original base mesh contains octaedra representing some kind of control points, and for some reason, a dress that covers the body mostly.
 
-\newsubject
+\newtopic
 
 Finding the correct target weights was still a problem. Different approaches were considered. The most naïve idea was to project the input point cloud to each body part and optimize the error between the point cloud and the mesh surface. This would require little knowledge of the effect of the targets, as different weights would be tried until good ones were found. By doing some good choices, such as optimizing length before circumference, this could be doable in real-time if the code was optimized.
 
