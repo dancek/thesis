@@ -139,6 +139,8 @@ In practice, Kinfu doesn't work well with isolated limb data. This has multiple 
 
 \subsection{Parametric surfaces}
 
+\fixme{TODO: cylinder man figure \label{fig:cylinders}}
+
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{makehuman-measurement.png}
@@ -182,8 +184,20 @@ Still, the idea of black-box optimization with expensive error computation on ea
 
 However, considering how the target system works, more deduction can be done beforehand. The magnitude of a target's effect is linearly defined by its weight. Therefore, if a measurement of the mesh is known for two values of a target weight, the weight matching another measurement value can be interpolated. This does require some assumptions: the targets must not overlap, the weights must be in reasonable limits (for example, the mesh must never clip itself) and the measurements must be linear.
 
+\fixme{TODO: full follow-up}
+
 \section{Texturing}
 
-\fixme{Write something here once I've done something...}
+No actual implementation of texturing the mesh was made in this project, but possible approaches were considered. Of course, simple mixing of colors to get an overall color for each body part was tested for the simple ``cylinder man'' approach, and can be seen in figure~\ref{fig:cylinders}.
 
+A simple way to get some more colorful details in the mesh would be to assign each vertex the color of the nearest point. This would allow visually representing some major details, such as the edge between a t-shirt and skin, or a colorful image on a shirt, or different color of face and hair.
 
+For a better level of detail, an actual texture would be needed. Different approximations can be chosen to project the points to the surface (assuming they are not exactly on the surface, which they rarely are). One would be to use the surface normal coinciding with the point, and project the point on the normal's intersection with the mesh. Similarly, a normal of the bone could be used (where any line starting from the end of the bone and at over a 90 degree angle to the bone is considered suitable, too).
+
+These approaches would work best by first finding the base color, as already implemented, and then adding local colors as appropriate. Each point should make a small ``splat'', and the different colors that coincide should be averaged. The choice of color space for averaging should be made based on practical evaluation, but at least averaging in RGB space seems to work reasonably well.
+
+A confidence measure could be used, so that points far from the surface have a smaller effect on the final color. Practically a Gaussian function such as $e^{-x^2}$ (or more generally, $a e^{-b x^2}$ with arbitrary $a$ and $b$) could be used for the weight of a point as a function of its distance to the surface, and also to control the color intensity of the splat.
+
+Another method of coloring the texture could be to pose the created model to correspond with silhouettes in the RGB images. Then the projection would be made through a camera ray from the image plane to the surface. This would practically be difficult to implent, as optimally the texturing should be done for previous frames using the current mesh. The texture segments from different frames should then be somehow stitched together.
+
+One notable problem about using the RGB data for texturing are the non-uniform lighting conditions. Some pixels are in the shadow and too dark, while others are overexposed. This problem is very difficult to avoid, as it would require knowledge of the lighting and inverse computation of shading.
