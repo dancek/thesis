@@ -206,6 +206,6 @@ or more generally,
 \end{equation*}
 could be used for the weight of a point as a function of its distance to the surface, and also to control the color intensity of the splat.
 
-Another method of coloring the texture could be to pose the created model to correspond with silhouettes in the RGB images. Then the projection would be made through a camera ray from the image plane to the surface. This would practically be difficult to implent, as optimally the texturing should be done for previous frames using the current mesh. The texture segments from different frames should then be somehow stitched together.
+Another method of coloring the texture could be to pose the created model to correspond with silhouettes in the RGB images. Then the projection would be made through a camera ray from the image plane to the surface. This would practically be difficult to implement, as optimally the texturing should be done for previous frames using the current mesh. The texture segments from different frames should then be somehow stitched together.
 
 One notable problem about using the RGB data for texturing are the non-uniform lighting conditions. Some pixels are in the shadow and too dark, while others are overexposed. This problem is very difficult to avoid, as it would require knowledge of the lighting and inverse computation of shading.
