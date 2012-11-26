@@ -121,7 +121,7 @@ Modeling different kinds of people is very easy using the MakeHuman application.
 Technically, the base mesh used by MakeHuman has indexed vertices, each with its own coordinates. Each target defines a vector for each vertex---this is often zero for most vertices, in which case only the non-zero vectors are actually stored. A target can be applied with a weight that is a real number, usually chosen between 0.0 and 1.0. Zero is the default, meaning the target does not change the mesh. When targets weights are changed, the coordinates for each vertex are recalculated as
 %
 \begin{equation*}
-    \vec{v}_i = \vec{b}_i + w_1 \vec{t}_{1,i} + w_2 \vec{t}_{2,i} + ... ,
+    \vec{v}_i = \vec{b}_i + w_1 \vec{t}_{1,i} + w_2 \vec{t}_{2,i} + \dots  + w_n \vec{t}_{n,i},
 \end{equation*}
 %
 where $i$ is the index of the vertex, $\vec{v}_i$ are the calculated coordinates of the vertex, $\vec{b}_i$ are the coordinates of the vertex in the base mesh, $w_k$ is the weight applied to the $k$th target and $\vec{t}_{k,i}$ is the vector defined for the $i$th vertex in the $k$th target.
