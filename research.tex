@@ -67,7 +67,7 @@ Another approach was suggested by Klaus Förger from our research group, led by 
 
 This approach avoids the assumption that each body part is a rigid object by capturing separate data for different poses. This might allow for more accurate reconstruction, given sophisticated methods for modeling the body surface from the data. On the other hand, the amount of data is larger and finding a suitable method for creating the rigged mesh is more difficult. Ultimately, this approach would require further experimentation on how different surface reconstruction approaches work with the data.
 
-A prototype implementation of the accumulation code was made by Klaus. The implementation includes rendering of the posed skeleton, along with point clouds gathered with the current joint angles and orientations. Heuristics are used to omit unreliable observations, such as ones with fast movement. The video and depth images from Kinect tend to be slightly out of sync, causing errors relative to movement speed in the 3D coordinates of the points. This is most apparent in the edge between foreground and background.
+A prototype of the accumulation code was made by Klaus. The implementation includes rendering of the posed skeleton, along with point clouds gathered with the current joint angles and orientations. Heuristics are used to omit unreliable observations, such as ones with fast movement. The video and depth images from Kinect tend to be slightly out of sync, causing errors relative to movement speed in the 3D coordinates of the points. This is most apparent in the edge between foreground and background.
 
 
 \section{Mesh generation}
