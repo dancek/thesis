@@ -30,6 +30,13 @@ OpenNI was finally chosen to be used for data acquisition in this work. The Micr
 
 \section{Body part segmentation}
 
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{pcd-segmented.png}
+    \caption{The same point cloud as in \ref{fig:pcd-plain}, with the user detached from the background and further segmented into individual body parts.}
+    \label{fig:pcd-segmented}
+\end{figure}
+
 Before any attempts at human body reconstruction can be made, the body needs to be detected from the RGB-D image. % mention 'segmentation'
 
 The NITE middleware for OpenNI \citep{NITE}
@@ -39,17 +46,22 @@ As the skeleton representation is available, we used it to aid in reconstructing
 
 Using the skeleton data, we segment the point cloud according to body parts.
 
-\fixme{The body parts used were chosen according to what the NITE skeleton allowed.} Thus the following segments were used:
+The body parts used were chosen according to what could be constructed from the joints provided in the NITE skeleton. Not all the joints are really joints in the human body, but they are treated as such in the simplified skeleton used by NITE. The joints that can be used are head, neck, torso, shoulders, elbows, hands, hips, knees and feet. NITE also has joints that exist in the API (Application Programming Interface) but whose positions are never updated: waist, collars, wrists, fingertips and ankles. 
 
-\fixme{TODO: what do we really have? what are the right English terms?
-legs, feet, forearms, shoulders, head, torso, hip}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{pcd-segmented.png}
-    \caption{The same point cloud as in \ref{fig:pcd-plain}, with the user detached from the background and further segmented into individual body parts.}
-    \label{fig:pcd-segmented}
-\end{figure}
+Using these joints, we constructed the following body parts that we segment the point clouds to:
+%
+\begin{itemize}
+    \item head and neck
+    \item shoulders (left and right)
+    \item lower chest
+    \item abdomen (left and right)
+    \item arm (left and right)
+    \item forearm and hand (left and right)
+    \item thigh (left and right)
+    \item leg and foot (left and right)
+\end{itemize}
+%
+Figure~\ref{fig:pcd-segmented} shows a body segmented according to these parts.
 
 \section{Point cloud alignment}
 
