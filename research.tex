@@ -1,6 +1,4 @@
 \chapter{Approach}
-% TODO: remember to justify the choices made
-% also compare different possibilities
 
 In this chapter, the work towards modeling a moving human is described. Starting out, there was much to be figured out and tried. Many questions were not only unanswered but still unasked. The target was already defined: a rigged 3D mesh of the user. The tools available were a Microsoft Kinect for Xbox 360 and a desktop computer.
 
@@ -26,6 +24,8 @@ OpenNI was finally chosen to be used for data acquisition in this work. The Micr
     \caption{A point cloud constructed from a single frame of Kinect data. The cloud is captured and saved in the .pcf format (Point Cloud Format) that PCL uses. The viewer used is part of PCL.}
     \label{fig:pcd-plain}
 \end{figure}
+
+As we receive data from the sensor, we need a representation for it. Physically, the Kinect has two cameras: one RGB and one IR.
 
 
 \section{Body part segmentation}
