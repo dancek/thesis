@@ -25,7 +25,19 @@ OpenNI was finally chosen to be used for data acquisition in this work. The Micr
     \label{fig:pcd-plain}
 \end{figure}
 
-As we receive data from the sensor, we need a representation for it. Physically, the Kinect has two cameras: one RGB and one IR.
+As we receive data from the sensor, we need a representation for it. Physically, the Kinect has two cameras: one RGB and one IR. The data received from the sensor is an 8-bit Bayer-filtered image and an 11-bit depth image computed onboard from the IR data; both have a resolution of 640x480 and a framerate of 30 fps. It is possible to request different resolutions or the raw IR image, but these are the most sensible choices. The drivers interpolate the Bayer image to get a 640x480 RGB image.
+
+Converting the data to a point cloud allows more sophisticated processing than using the plain images. A point cloud represents the actual real-world geometry of the observation, allowing interpreting the point locations as vectors and using standard mathematics. Image-based algorithms do exist for some tasks and usually are computationally very efficient compared to algorithms operating on 3D point sets, but they tend to be very unintuitive.
+
+The point cloud representation allows geometrical operations, one practical application of which is to render the data from another viewpoint as seen in figure~\ref{fig:pcd-plain}. This kind of 3D rendering with a freely moving camera was used to get acquainted with the data of Kinect. Looking at the point cloud data from Kinect in real time helps notice the kind of noise inherent to Kinect. The most evident types of errors in the data are:
+%
+\begin{description}
+    \item[Jitter in depth measurements.] The depth of a single pixel in a static scene may seemingly randomly change between two or three values.
+    \item[Unaligned edges between the RGB and depth image.] Points in the foreground have the color of the background and vice versa. This happens near the edges, especially when an object is near the sensor.
+    \item[Missing points.] Because the depth is measured from disparities in a known laser pattern, the measurement cannot be made if a laser point cannot be reliably identified. This can be caused by occlusion, intensive light that covers the laser pattern, materials that absorb the IR wavelength used by the laser or areas that are so white that the IR sensor is saturated. As the result, the depth is set to a special value meaning it is unknown, and the point is not included in the point cloud.
+    \item[Systematic errors.] Planes tend to be slightly curving---this means the conversion from depth image to world coordinates is inaccurate. This might be possible to overcome by careful calibration, but the error is small enough not to matter very much.
+    \item[Biased normals.] \fixme{surfaces tend to be facing more towards the camera than they are}
+\end{description}
 
 
 \section{Body part segmentation}
