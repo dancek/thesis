@@ -132,7 +132,7 @@
 \begin{document}
 % This command adds a PDF bookmark to the cover page. You may leave
 % it out if you don't like it...
-\pdfbookmark[0]{Cover page}{bookmark.0.cover}
+%\pdfbookmark[0]{Cover page}{bookmark.0.cover}
 % This command is defined in aalto-thesis.sty. It controls the page 
 % numbering based on whether the doublenumbering option is specified
 \startcoverpage
@@ -151,6 +151,7 @@
 
 % Abstract in English
 % ------------------------------------------------------------------
+%\pdfbookmark[0]{Abstract}{bookmark.0.abstract}
 \thesisabstract{english}{
 Depth cameras have become cheap and are \fixme{becoming} ubiquitous. This makes 3D scanning at home possible. Software for scanning static objects is already available. However, reconstructing a moving human is difficult. Previously suggested methods are slow and no implementation has been made public.
 
@@ -161,6 +162,7 @@ We propose a method for generating an avatar that looks similar to the user and 
 % Acknowledgements
 % ------------------------------------------------------------------
 \selectlanguage{english}
+%\pdfbookmark[0]{Acknowledgements}{bookmark.0.acknowledgements}
 \chapter*{Acknowledgements}
 
 \fixme{I wish to thank the Department of Media Technology, my supervisor Tapio Takala and my instructor Tuukka Takala.}
@@ -221,7 +223,7 @@ We propose a method for generating an avatar that looks similar to the user and 
 
 % TODO: should all sources be displayed?
 \nocite{*}
-\printbibliography
+\printbibliography[heading=bibintoc]
 
 
 % Appendices go here
