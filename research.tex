@@ -52,14 +52,9 @@ Further experimentation on point clouds was made by compiling PCL and trying its
     \label{fig:pcd-segmented}
 \end{figure}
 
-Before any attempts at human body reconstruction can be made, the body needs to be detected from the RGB-D image. % mention 'segmentation'
+Before any attempts at human body reconstruction can be made, the body needs to be detected and segmented from the RGB-D image. The NITE middleware for OpenNI \citep{NITE} includes functions for person detection, so we did not put effort into looking for alternative approaches. Moreover, NITE has the capability to generate a skeleton representation of human users.
 
-The NITE middleware for OpenNI \citep{NITE}
-includes functions for person detection. Moreover, NITE has the capability to generate a skeleton representation of human users.
-
-As the skeleton representation is available, we used it to aid in reconstructing the body model.
-
-Using the skeleton data, we segment the point cloud according to body parts.
+We considered different possible approaches at body reconstruction, and our ideas mostly required considering different body parts such as limbs as individual (though connected) entities. As NITE provided a skeleton of the user, utilizing it was the easiest way to recognize different body parts.
 
 The body parts used were chosen according to what could be constructed from the joints provided in the NITE skeleton. Not all the joints are really joints in the human body, but they are treated as such in the simplified skeleton used by NITE. The joints that can be used are head, neck, torso, shoulders, elbows, hands, hips, knees and feet. NITE also has joints that exist in the API (Application Programming Interface) but whose positions are never updated: waist, collars, wrists, fingertips and ankles. 
 
