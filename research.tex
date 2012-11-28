@@ -86,7 +86,7 @@ We also wanted the option to experiment with the original data: the skeleton joi
 
 \fixme{TODO: example PCD listing?}
 
-For experimentation, we created simple functions in MATLAB and Python (NumPy) for importing the PCD file format with our own skeleton extension. Some experimentation and plotting of the data was made in both, but generally PCL seemed to be a better platform for working with point clouds than either MATLAB or Numpy.
+For experimentation, we created functions in MATLAB and Python (NumPy) for importing the plain-text PCD file format with our own skeleton extension. Some experimentation and plotting of the data was made in both, but generally PCL seemed to be a better platform for working with point clouds than either MATLAB or Numpy.
 
 \section{Point cloud alignment}
 
@@ -157,6 +157,8 @@ One possible approach is to use a voxel grid similar to the one KinectFusion \au
 To evaluate the approach, a prototype was built on top of Kinfu\footnote{Kinfu is an open source implementation of KinectFusion \citep{newcombe2011kinectfusion}. It is included in the Point Cloud Library \citep{PCL}.}. Since the point clouds were already segmented by body part, it was possible to create recordings that only include a single body part. These recordings could then be played back and used as input for Kinfu.
 
 The working hypothesis was that each body part could be treated as a static object, and that Kinfu should do quite well at modeling them. \fixme{Notably there's little difference between the camera moving} (as is the case in KinectFusion) and the object moving. If the background is filtered out, the result is similar. This made for the case that running the KinectFusion algorithm in parallel to each body part could give reasonably good results.
+
+\fixme{TODO: tell what was done; changes to Kinfu, the steps taken to make data with only one limb}
 
 In practice, Kinfu doesn't work well with isolated limb data. This has multiple causes. \fixme{1) For full-body scanning the whole user must obviously fit in the picture. At the VGA resolution that Kinect uses, this leaves few pixels per limb. 2) The depth resolution of Kinect is about 1--2 centimeters at a distance suitable for full-body scanning. 3) ICP only uses surface features for alignment, not color data. As the individual body parts tend to be quite smooth, this is a problem.}
 
