@@ -177,7 +177,7 @@ After the necessary changes to Kinfu were completed and working, the experiment 
 
 Reading the recordings from disk instead of directly from Kinect turned out to be very slow. We were able to significantly speed up the process by converting the PCD files to the binary format, allowing mmapping them. A minor improvement was still achieved by reading the files from a ramdisk instead of the physical drive. Still, the runtimes per frame were similar to normal Kinfu although the amount of data for a single body part was a fraction of the full data. Therefore, this approach would require intensive optimization to be possible in real time---if even then.
 
-However, the performance is not the greatest issue. In practice, Kinfu doesn't work well at all with isolated limb data. This has multiple causes. \fixme{1) For full-body scanning the whole user must obviously fit in the picture. At the VGA resolution that Kinect uses, this leaves few pixels per limb. 2) The depth resolution of Kinect is about 1--2 centimeters at a distance suitable for full-body scanning. 3) ICP only uses surface features for alignment, not color data. As the individual body parts tend to be quite smooth, this is a problem.}
+However, the performance is not the greatest issue. In practice, Kinfu doesn't work well at all with isolated limb data. This has multiple causes. \fixme{1) For full-body scanning the whole user must obviously fit in the picture. At the VGA resolution that Kinect uses, this leaves few pixels per limb. 2) The depth resolution of Kinect is about 1--2 centimeters at a distance suitable for full-body scanning. 3) ICP only uses surface features for alignment, not color data. As the individual body parts tend to be quite smooth, this is a problem. There are differences between body parts---the head has most geometric features and its reconstruction works satisfactorily if the user keeps their neck still, as seen in figure~\ref{fig:limbwise-head}. Other body parts are more problematic (see figure~\ref{fig:limbwise-arm}.}
 
 \begin{figure}
     \centering
@@ -226,11 +226,13 @@ Obviously, a more human-like model was needed. The "cylinder man" could be usabl
 
 The best parametric model for the purpose would then be something that already assumes the generic human shape, while allowing \fixme{exact} modifications to single body parts. The SCAPE model \citep{anguelov2005scape} used by \citet{weiss2011home} fits the description, but is not suitable for real-time evaluation. A more appropriate approach is taken by MakeHuman \citep{makehuman}, which uses a base mesh and has defined parameters that can be used to reshape different parts of the mesh.
 
-Especially the Measurement plug-in in MakeHuman was promising, as it contained a good amount of parameters that mostly did not affect overlapping parts of the base mesh. For example, there are targets for arm length and circumference.
+Especially the Measurement plug-in in MakeHuman (see figure~\ref{fig:makehuman-measurement}) was promising, as it contained a good amount of parameters that mostly did not affect overlapping parts of the base mesh. For example, there are targets for arm length and circumference.
 
 MakeHuman is still in development and at the time of writing was undergoing some large changes. It is not designed to be used as a library, either. Interfacing with other software thus seemed nontrivial. After some time tinkering with the MakeHuman implementation, it was decided that the data is important while the software can be replaced.
 
-The \term{target} system in MakeHuman (see section \ref{literature.makehuman}) was implemented in Processing. The base mesh was also modified to only include the parts that should be drawn, while keeping mesh indices the same. The original base mesh contains octaedra representing some kind of control points, and for some reason, a dress that covers the body mostly.
+The \term{target} system in MakeHuman (see section \ref{literature.makehuman}) was implemented in Processing. Our version reads the same target definition files as MakeHuman itself. The application is displayed in figure~\ref{fig:mhtargets} showing the plain base mesh and in figure~\ref{fig:mhtargets-fat} with some visible modifications to target weights.
+
+The base mesh was also modified to only include the parts that should be drawn, while keeping mesh indices the same. The original base mesh contains octaedra representing some kind of control points, and for some reason, a dress that covers the body mostly.
 
 \newtopic
 
