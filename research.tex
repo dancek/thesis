@@ -39,7 +39,9 @@ The point cloud representation allows geometrical operations, one practical appl
     \item[Biased normals.] Round objects seem flatter around the edges than they actually are. No measurements can be made where the surface is tangential towards the camera, and if there's a laser point on a nearly-tangential surface, its intensity is too low to be measured. Because depth values for most pixels are in fact interpolated from nearby measurements, and measurements can only be made on the relatively flat, camera-facing parts, objects seem to be flat. In other words, continuous depth variations in a strip of neighboring pixel are moderate at most.
 \end{description}
 
+Further experimentation on point clouds was made by compiling PCL and trying its examples. We made simple C++ code of our own utilizing PCL and OpenNI to grab a frame from Kinect and save it as a point cloud in the PCL file format. Point clouds captured this way could then be used as input for applications included in the PCL distribution. We examined the convex and concave hulls of point clouds to see if they might be useful. We tested fast mesh generation, which allows viewing an approximate surface of the Kinect view in real time, albeit with a lot of noise. We also compiled Kinfu and experimented with it, even making some changes of our own to it---more on that in sections \ref{kinfurig} and \ref{voxelgrid}. One bug in the PCL IO module was also found and fixed while writing our own code\footnote{See \url{http://dev.pointclouds.org/issues/812}}.
 
+% TODO: more \bs{important} things done with PCL
 
 \section{Body part segmentation}
 
@@ -99,7 +101,7 @@ A prototype of the accumulation code was made by Klaus. The implementation inclu
 
 \fixme{Alternative approaches, including the following}
 
-\subsection{Kinfu and automatic rigging}
+\subsection{Kinfu and automatic rigging} \label{kinfurig}
 
 \begin{figure}
     \centering
@@ -138,7 +140,7 @@ Finally, Pinocchio successfully rigged the mesh and a walking animation of the u
 
 All in all, the amount of manual work required to create a rigged mesh from scratch was about an hour with some earlier experience of the tools. The process could possibly be automated, but implementing such an automatic system is far from trivial. The scanning phase would still necessarily need another person to move the Kinect around, and the time requirements would probably be around a minute for scanning and five minutes for processing. The method is thus feasible, but not as easy as \citet{charpentier2011accurate} suggests.
 
-\subsection{Voxel grid}
+\subsection{Voxel grid} \label{voxelgrid}
 
 One possible approach is to use a voxel grid similar to the one KinectFusion \autocites{newcombe2011kinectfusion}{izadi2011kinectfusion} uses. This allows generating meshes representing arbitrary shapes.
 
