@@ -1,16 +1,18 @@
+LATEXOPTS=""
+
 all: xelatex clean
 
 pdflatex: clean
-	pdflatex thesis
+	pdflatex ${LATEXOPTS} thesis
 	bibtex thesis
-	pdflatex thesis
-	pdflatex thesis
+	pdflatex ${LATEXOPTS} thesis
+	pdflatex ${LATEXOPTS} thesis
 
-xelatex: clean
-	xelatex thesis
+xelatex ${LATEXOPTS}: clean
+	xelatex ${LATEXOPTS} thesis
 	bibtex thesis
-	xelatex thesis
-	xelatex thesis
+	xelatex ${LATEXOPTS} thesis
+	xelatex ${LATEXOPTS} thesis
 
 clean:
 	rm -f *.4ct *.4tc *.aux *.idv *.lg *.log *.bbl *.blg *.dvi *.out *.tmp *.toc *.xref
