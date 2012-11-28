@@ -63,7 +63,7 @@ Using the skeleton data, we segment the point cloud according to body parts.
 
 The body parts used were chosen according to what could be constructed from the joints provided in the NITE skeleton. Not all the joints are really joints in the human body, but they are treated as such in the simplified skeleton used by NITE. The joints that can be used are head, neck, torso, shoulders, elbows, hands, hips, knees and feet. NITE also has joints that exist in the API (Application Programming Interface) but whose positions are never updated: waist, collars, wrists, fingertips and ankles. 
 
-Using these joints, we constructed the following body parts that we segment the point clouds to:
+Using these joints, we connected pairs to make bones and constructed the following body parts that we segment the point clouds to:
 %
 \begin{itemize}
     \item head and neck
@@ -78,9 +78,9 @@ Using these joints, we constructed the following body parts that we segment the 
 %
 Figure~\ref{fig:pcd-segmented} shows a body segmented according to these parts.
 
-\fixme{TODO: mention nearest-neighbor}
+Body part segmentation as described was implemented in Processing using SimpleOpenNI. The method used is simple: for each point, compute the distance to all bones and choose the nearest one. This is not optimal, but could be improved later on. A possible optimization would be to only compute the distance to all bones for every $n$th point, and only consider the two closest points for neighboring points. Another one would be to project the bones to the image coordinates, and only compute 3D distances where the segmentation is not obvious in 2D.
 
-Body part segmentation as described was implemented in Processing using SimpleOpenNI. After seeing the segmentation in action, we decided further study of the point clouds and skeleton positions frame by frame would be useful. To this end, we created a writer for the PCD (Point Cloud Data) file format used by PCL in Processing based on the released specification \fixme{TODO: source}. This allowed making recordings of the point clouds that also contain body part index and RGB color as additional fields, something the file format has built-in support for. Furthermore, the PCD viewer included in the PCL distribution allows visualizing this---the colored body parts in figure~\ref{fig:pcd-segmented} were achieved with no modifications to the viewer application.
+After seeing the segmentation in action, we decided further study of the point clouds and skeleton positions frame by frame would be useful. To this end, we created a writer for the PCD (Point Cloud Data) file format used by PCL in Processing based on the released specification \fixme{TODO: source}. This allowed making recordings of the point clouds that also contain body part index and RGB color as additional fields, something the file format has built-in support for. Furthermore, the PCD viewer included in the PCL distribution allows visualizing this---the colored body parts in figure~\ref{fig:pcd-segmented} were achieved with no modifications to the viewer application.
 
 We also wanted the option to experiment with the original data: the skeleton joint positions. As the PCD format supported comments, we found it simplest to invent a header format that is interpreted as a comment in existing applications but could be read by software of our own. \fixme{TODO: format specification}
 
