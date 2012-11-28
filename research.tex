@@ -88,10 +88,10 @@ We also wanted the option to experiment with the original data: the skeleton joi
     \# user 1
 }
 %
-Then each joint position is listed along with its position, rotation and the confidence values NITE has assigned them. The rotation is saved as a quaternion for compactness. If there is no rotation assigned, as is the case for the head, hand and foot joints, the identity rotation with confidence 0.0 is saved. The joint definitions then look like
+Then each joint position is listed along with its position, rotation and the confidence values NITE has assigned them. The rotation is saved as a quaternion for compactness. If there is no rotation assigned, as is the case for the head, hand and foot joints, the identity rotation with confidence 0.0 is saved. Each joint is then defined by one line that looks like
 %
 \code{
-    \# \textit{jointname} $p_x$ $p_y$ $p_z$ $c(p)$ $q_x$ $q_y$ $q_z$ $q_w$ $c(q)$
+    \# right\_arm $p_x$ $p_y$ $p_z$ $c(p)$ $q_x$ $q_y$ $q_z$ $q_w$ $c(q)$
 }
 %
 where $p$ is position, $c$ is the confidence of a value and $q$ is the rotation quaternion. After the skeleton definitions comes the standard PCD header.
