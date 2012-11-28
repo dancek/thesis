@@ -101,7 +101,11 @@ The naïve approach to modeling uses data only from a single frame. However, thi
 
 To allow for combining data from multiple frames, the observations (point clouds) need to be aligned one way or another. Methods introduced in \autoref{literature.alignment} were available, each with their own trade-offs.
 
-\fixme{TODO: write about alignment methods tested: PCL, CUDA EMICP + SoftAssign}
+We considered the different methods and tested implementations available. Kinfu already uses ICP, so the source code was studied and alterations were made to see the effects. Different registration algorithms included in PCL were studied on the level of the API documentation. It was concluded that registration is not a simple task, and the ICP implementations used by KinectFusion and Kinfu are highly optimized GPGPU code are very difficult to match performance-wise. This discouraged us from further investigating any algorithms that only have CPU implementations.
+
+Of course, we could look at making our own GPGPU implementations of registration algorithms. But such a task would require a major effort and there would be no guarantee of real benefit. This would deviate too far from the focus of this research, so we had to be content with existing registration algorithms that run on the GPU.
+
+The CUDA implementations of EM-ICP and Softassign published by \citet{tamaki2010softassign} were downloaded. Their compilation posed slight problems as they used OpenGL Utility Library (GLU) functions that were deprecated and then removed years ago. After some modifications to the code and build system, the implementations were successfully compiled. The algorithms seem to be more robust than the standard ICP, but they are significantly slower. Quick experimentation showed that these registration methods would not be suitable for real-time operation.
 
 \subsection{Point cloud accumulation}
 
