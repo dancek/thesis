@@ -85,16 +85,16 @@ After seeing the segmentation in action, we decided further study of the point c
 We also wanted the option to experiment with the original data: the skeleton joint positions. As the PCD file format supported comments (beginning with a \#), we found it simplest to invent a header format that is interpreted as a comment in existing applications but could be read by software of our own. Skeleton data is required to be in the beginning of the file, before the PCD header. Saving more than one skeletons is supported, and each skeleton definition begins by stating the user:
 %
 \code{
-    \# user <id>
+    \# user 1
 }
 %
-Then each joint position is listed along with its position, rotation and the confidence values NITE has assigned them. The rotation is saved as a quaternion for compactness. If there is no rotation assigned, as is the case for the head, hand and foot joints, the identity rotation with confidence 0.0 is saved. The joint definitions then look like:
+Then each joint position is listed along with its position, rotation and the confidence values NITE has assigned them. The rotation is saved as a quaternion for compactness. If there is no rotation assigned, as is the case for the head, hand and foot joints, the identity rotation with confidence 0.0 is saved. The joint definitions then look like
 %
 \code{
-    \# <jointname> <p_x> <p_y> <p_z> <confidence(p)> <q_x> <q_y> <q_z> <q_w> <confidence(q)>
+    \# \textit{jointname} $p_x$ $p_y$ $p_z$ $c(p)$ $q_x$ $q_y$ $q_z$ $q_w$ $c(q)$
 }
 %
-After the skeleton definitions comes the standard PCD header.
+where $p$ is position, $c$ is the confidence of a value and $q$ is the rotation quaternion. After the skeleton definitions comes the standard PCD header.
 
 \fixme{TODO: example PCD listing?}
 
