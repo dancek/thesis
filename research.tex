@@ -78,13 +78,23 @@ Using these joints, we constructed the following body parts that we segment the 
 %
 Figure~\ref{fig:pcd-segmented} shows a body segmented according to these parts.
 
+\fixme{TODO: mention nearest-neighbor}
+
+Body part segmentation as described was implemented in Processing using SimpleOpenNI. After seeing the segmentation in action, we decided further study of the point clouds and skeleton positions frame by frame would be useful. To this end, we created a writer for the PCD (Point Cloud Data) file format used by PCL in Processing based on the released specification \fixme{TODO: source}. This allowed making recordings of the point clouds that also contain body part index and RGB color as additional fields, something the file format has built-in support for. Furthermore, the PCD viewer included in the PCL distribution allows visualizing this---the colored body parts in figure~\ref{fig:pcd-segmented} were achieved with no modifications to the viewer application.
+
+We also wanted the option to experiment with the original data: the skeleton joint positions. As the PCD format supported comments, we found it simplest to invent a header format that is interpreted as a comment in existing applications but could be read by software of our own. \fixme{TODO: format specification}
+
+\fixme{TODO: example PCD listing?}
+
+For experimentation, we created simple functions in MATLAB and Python (NumPy) for importing the PCD file format with our own skeleton extension. Some experimentation and plotting of the data was made in both, but generally PCL seemed to be a better platform for working with point clouds than either MATLAB or Numpy.
+
 \section{Point cloud alignment}
 
 The naïve approach to modeling uses data only from a single frame. However, this is unsatisfactory as in practice only less than a half of a human can be seen at once---when the front side is visible, the back is not. Another consideration is that the data tends to be noisy and inaccurate. Accumulating data over time makes it possible to remove some of the noise and improve accuracy.
 
 To allow for combining data from multiple frames, the observations (point clouds) need to be aligned one way or another. Methods introduced in \autoref{literature.alignment} were available, each with their own trade-offs.
 
-\fixme{write more about this when the best approach is actually chosen}
+\fixme{TODO: write about alignment methods tested: PCL, CUDA EMICP + SoftAssign}
 
 \subsection{Point cloud accumulation}
 
