@@ -248,3 +248,9 @@ could be used for the weight of a point as a function of its distance to the sur
 Another method of coloring the texture could be to pose the created model to correspond with silhouettes in the RGB images. Then the projection would be made through a camera ray from the image plane to the surface. This would practically be difficult to implement, as optimally the texturing should be done for previous frames using the current mesh. The texture segments from different frames should then be somehow stitched together.
 
 One notable problem about using the RGB data for texturing are the non-uniform lighting conditions. Some pixels are in the shadow and too dark, while others are overexposed. This problem is very difficult to avoid, as it would require knowledge of the lighting and inverse computation of shading.
+
+\section{Recording Kinfu trajectory}
+
+\fixme{Can I fit this somewhere?}
+
+Due to the work already done on Kinfu (see section~\ref{voxelgrid}) it was easy to make minor changes for recording trajectories. This proved useful in other research, which yielded one conference paper \citep*{tykkalavisapp} and one journal article \citep*{tykkalavcir}. Both are accepted to be published in 2013.
