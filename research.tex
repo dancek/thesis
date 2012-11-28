@@ -21,7 +21,7 @@ OpenNI was finally chosen to be used for data acquisition in this work. The Micr
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{pcd-plain.png}
-    \caption{A point cloud constructed from a single frame of Kinect data. The cloud is captured and saved in the .pcf format (Point Cloud Format) that PCL uses. The viewer used is part of PCL.}
+    \caption{A point cloud constructed from a single frame of Kinect data. The cloud is captured and saved in the PCD (Point Cloud Data) format that PCL uses \citep{pcdspec}. The viewer used is part of PCL.}
     \label{fig:pcd-plain}
 \end{figure}
 
@@ -80,7 +80,7 @@ Figure~\ref{fig:pcd-segmented} shows a body segmented according to these parts.
 
 Body part segmentation as described was implemented in Processing using SimpleOpenNI. The method used is simple: for each point, compute the distance to all bones and choose the nearest one. This is not optimal, but could be improved later on. A possible optimization would be to only compute the distance to all bones for every $n$th point, and only consider the two closest points for neighboring points. Another one would be to project the bones to the image coordinates, and only compute 3D distances where the segmentation is not obvious in 2D.
 
-After seeing the segmentation in action, we decided further study of the point clouds and skeleton positions frame by frame would be useful. To this end, we created a writer for the PCD (Point Cloud Data) file format used by PCL in Processing based on the released specification \fixme{TODO: source}. This allowed making recordings of the point clouds that also contain body part index and RGB color as additional fields, something the file format has built-in support for. Furthermore, the PCD viewer included in the PCL distribution allows visualizing this---the colored body parts in figure~\ref{fig:pcd-segmented} were achieved with no modifications to the viewer application.
+After seeing the segmentation in action, we decided further study of the point clouds and skeleton positions frame by frame would be useful. To this end, we created a writer for the PCD file format used by PCL in Processing based on the released specification \citep{pcdspec}. This allowed making recordings of the point clouds that also contain body part index and RGB color as additional fields, something the file format has built-in support for. Furthermore, the PCD viewer included in the PCL distribution allows visualizing this---the colored body parts in figure~\ref{fig:pcd-segmented} were achieved with no modifications to the viewer application.
 
 We also wanted the option to experiment with the original data: the skeleton joint positions. As the PCD format supported comments, we found it simplest to invent a header format that is interpreted as a comment in existing applications but could be read by software of our own. \fixme{TODO: format specification}
 
