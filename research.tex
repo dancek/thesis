@@ -118,7 +118,7 @@ This approach avoids the assumption that each body part is a rigid object by cap
 A prototype of the accumulation code was made by Klaus. The implementation includes rendering of the posed skeleton, along with point clouds gathered with the current joint angles and orientations. Heuristics are used to omit unreliable observations, such as ones with fast movement. The video and depth images from Kinect tend to be slightly out of sync, causing errors relative to movement speed in the 3D coordinates of the points. This is most apparent in the edge between foreground and background.
 
 
-\section{Mesh generation}
+\section{Creating a rigged mesh}
 
 \fixme{Alternative approaches, including the following}
 
@@ -161,7 +161,7 @@ Finally, Pinocchio successfully rigged the mesh and a walking animation of the u
 
 All in all, the amount of manual work required to create a rigged mesh from scratch was about an hour with some earlier experience of the tools. The process could possibly be automated, but implementing such an automatic system is far from trivial. The scanning phase would still necessarily need another person to move the Kinect around, and the time requirements would probably be around a minute for scanning and five minutes for processing. The method is thus feasible, but not as easy as \citet{charpentier2011accurate} suggests.
 
-\subsection{Voxel grid} \label{voxelgrid}
+\subsection{Parallel Kinfu for each body part} \label{voxelgrid}
 
 \begin{figure}
     \centering
@@ -202,7 +202,7 @@ However, the performance is not the greatest issue. In practice, Kinfu doesn't w
 
 These problems led us to consider this approach unsalvageable for now. The idea is good, but the implementation would significantly benefit from a higher-resolution, more accurate sensor and a more suitable registration algorithm than ICP.
 
-\subsection{Parametric surfaces}
+\subsection{Using a human body model}
 
 \fixme{TODO: cylinder man figure \label{fig:cylinders}}
 
