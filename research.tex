@@ -124,7 +124,16 @@ The major objective in our research is to generate a mesh of the user, and rig i
 
 We made different approaches to this problem, and in this section we describe each approach taken.
 
-\fixme{Should the cylinder man have its own subsection? "Geometric surfaces"}
+\subsection{Geometric surfaces}
+
+\fixme{TODO: cylinder man figure \label{fig:cylinders}}
+
+\fixme{TODO: expand this section a bit}
+
+As the very first prototype, a simple cylinder approximation was used. A cylinder was fitted to the point cloud of a body part, and colored according to its average color. This was good for testing the segmentation and getting a general idea of how accurate the skeleton is. Some corner cases were also found using this prototype. For example, when a lot of occlusion occurs the NITE skeleton may begin glitching. The body part segmentation also has errors at times when bones are very near each other.
+
+Obviously, a more human-like model was needed. The "cylinder man" could be usable as an avatar, and is certainly recognizable as human-like. But certainly its shape was nowhere near a real human body. Different simple shapes such as ellipsoids were considered. This would still have left the problem of connecting the body parts. A solution based on meta-blobs might have been feasible, but in the end this approach started to seem quite cumbersome. And still the accuracy would have left much to be hoped for.
+
 
 \subsection{Kinfu and automatic rigging} \label{kinfurig}
 
@@ -208,8 +217,6 @@ These problems led us to consider this approach unsalvageable for now. The idea 
 
 \subsection{Using a human body model}
 
-\fixme{TODO: cylinder man figure \label{fig:cylinders}}
-
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{makehuman-measurement.png}
@@ -233,9 +240,7 @@ These problems led us to consider this approach unsalvageable for now. The idea 
 
 Another approach is to use the information readily available about the body parts being modeled. Instead of allowing arbitrary shapes, the space of possible shapes can be limited to what the body parts tend to look like.
 
-As the very first prototype, a simple cylinder approximation was used. A cylinder was fitted to the point cloud of a body part, and colored according to its average color. This was good for testing the segmentation and getting a general idea of how accurate the skeleton is. Some corner cases were also found using this prototype. For example, when a lot of occlusion occurs the NITE skeleton may begin glitching. The body part segmentation also has errors at times when bones are very near each other.
-
-Obviously, a more human-like model was needed. The "cylinder man" could be usable as an avatar, and is certainly recognizable as human-like. But certainly its shape was nowhere near a real human body. Different simple shapes such as ellipsoids were considered. This would still have left the problem of connecting the body parts. A solution based on meta-blobs might have been feasible, but in the end this approach started to seem quite cumbersome. And still the accuracy would have left much to be hoped for.
+\fixme{TODO: make this text flow}
 
 The best parametric model for the purpose would then be something that already assumes the generic human shape, while allowing modifications to single body parts. The SCAPE model \citep{anguelov2005scape} used by \citet{weiss2011home} fits the description, but is not suitable for real-time evaluation. A more appropriate approach is taken by MakeHuman \citep{makehuman}, which uses a base mesh and has defined parameters that can be used to reshape different parts of the mesh.
 
