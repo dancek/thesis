@@ -120,7 +120,9 @@ A prototype of the accumulation code was made by Klaus. The implementation inclu
 
 \section{Creating a rigged mesh}
 
-\fixme{Alternative approaches, including the following}
+The major objective in our research is to generate a mesh of the user, and rig it so that it can be animated. All the other work we have done has been made towards this goal---to transform the data such that creating a rigged mesh is possible. Finding the surface mesh and rigging it can be considered two separate tasks, or they can be done simultaneously. The choice of approach affects both tasks.
+
+We made different approaches to this problem, and in this section we describe each approach taken.
 
 \fixme{Should the cylinder man have its own subsection? "Geometric surfaces"}
 
@@ -253,7 +255,7 @@ Still, the idea of black-box optimization with expensive error computation on ea
 
 However, considering how the target system works, more deduction can be done beforehand. The magnitude of a target's effect is linearly defined by its weight. Therefore, if a measurement of the mesh is known for two values of a target weight, the weight matching another measurement value can be interpolated. This does require some assumptions: the targets must not overlap, the weights must be in reasonable limits (for example, the mesh must never clip itself) and the measurements must be linear.
 
-\fixme{TODO: full follow-up}
+\fixme{TODO: list any improvements that I make}
 
 \section{Texturing}
 
