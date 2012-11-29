@@ -124,7 +124,7 @@ The major objective in our research is to generate a mesh of the user, and rig i
 
 We made different approaches to this problem, and in this section we describe each approach taken.
 
-\subsection{Geometric surfaces}
+\subsection{Geometric surfaces} \label{cylinderman}
 
 \fixme{TODO: cylinder man figure \label{fig:cylinders}}
 
@@ -240,9 +240,7 @@ These problems led us to consider this approach unsalvageable for now. The idea 
 
 Another approach is to use the information readily available about the body parts being modeled. Instead of allowing arbitrary shapes, the space of possible shapes can be limited to what the body parts tend to look like.
 
-\fixme{TODO: make this text flow}
-
-The best parametric model for the purpose would then be something that already assumes the generic human shape, while allowing modifications to single body parts. The SCAPE model \citep{anguelov2005scape} used by \citet{weiss2011home} fits the description, but is not suitable for real-time evaluation. A more appropriate approach is taken by MakeHuman \citep{makehuman}, which uses a base mesh and has defined parameters that can be used to reshape different parts of the mesh.
+Our ``cylinder man'' approach described in section~\ref{cylinderman} is partly based on the same ideology: limbs look (slightly) like cylinders, so using cylinders to represent them is a workable approximation. However, the shortcomings of modeling the human body as geometric shapes were found to be too great to bypass. The best parametric model for the purpose would then be something that already assumes the generic human shape, while allowing modifications to single body parts. The SCAPE model \citep{anguelov2005scape} used by \citet{weiss2011home} fits the description, but is not suitable for real-time evaluation. A more appropriate approach is taken by MakeHuman \citep{makehuman}, which uses a base mesh and has defined parameters that can be used to reshape different parts of the mesh.
 
 Especially the Measurement plug-in in MakeHuman (see figure~\ref{fig:makehuman-measurement}) was promising, as it contained a good amount of parameters that mostly did not affect overlapping parts of the base mesh. For example, there are targets for arm length and circumference.
 
