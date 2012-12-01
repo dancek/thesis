@@ -4,14 +4,14 @@ In this chapter, we examine different areas of research relevant to scanning and
 
 \section{3D reconstruction}
 
-\fixme{TODO: overview: what is 3D reconstrucion?}
+\fixme{TODO: overview: what is 3D reconstrucion? what is contained in this section?}
 
 \citet{fabio2003point} overviews the process of converting a point cloud to a 3D polygon mesh and the problems involved. The main contributions of the paper are defining terminology, classifying algorithms and describing the state-of-the-art methods in 2003. No original research is described. Still, the article is helpful in obtaining a very general idea of the process of 3D reconstruction from point cloud data.
 
 
 \subsection{Point cloud alignment} \label{literature.alignment}
 
-\fixme{TODO: overview: what is this?}
+\fixme{TODO: overview: what is this? why is this important?}
 % TODO: mention rigid and non-rigid registration
 
 The Iterative Closest Point (ICP) algorithm is commonly used for aligning two point clouds. The algorithm was originally presented by \citet{besl1992method} and \citet{chen1991object}. A pseudocode description of ICP is shown in algorithm~\ref{literature.pseudoicp}. It works by finding corresponding points from the two point clouds. Then a rigid transformation that minimizes the error between the corresponding point pairs is searched for. This transformation is then applied. Iterating this multiple times, a local optimum should be found.
@@ -112,6 +112,8 @@ To date, several guides to human anatomy for artists have been published \autoci
 
 \subsection{3D reconstruction of the human body}
 
+\fixme{TODO: a single-paragraph preface}
+
 \textit{Morphable models} are defined by \citet{schneider2010fitting} to mean parametric models of 3D shape, created by applying Principal Component Analysis (PCA) on a database of meshes. As a single PCA model can only cover a limited subspace of shapes, complex shapes can be split into parts, creating in essence a multi-PCA model of the overall shape. Fitting such a morphable model to a shape is easy if the target representation is semantically consistent with the model. That is, the target should be a mesh that has the same number of vertices in positions corresponding to the model. Practically, this is rarely true, and a method for finding the correspondences is needed. \citet{schneider2010fitting} describe the classical way of fitting a morphable model to a point cloud that consists of three steps. First, a template mesh corresponding to the vertex structure of the morphable model must be fitted to the point cloud using a non-rigid registration method. This template is used to find points corresponding to vertices. The topology is then solved and the morphable model can be fitted. A better approach is suggested, where all the pose and shape constraints are written as a matrix equation. Then an iterative optimization is run, where the pose is optimized by an ICP-like method, parameter changes are solved from the matrix equation using singular value decomposition and then the parameters are updated. The optimization is stopped when the mean squared error becomes stable between iterations.
 
 A morphable human head model and laser scans of faces are used as an example to show that simultaneous optimization indeed converges faster and produces a more accurate result than using an initial pose optimization and then only fitting shape. Additionally, the 3D head model fitting is shown to work with a mugshot-type set of two 2D images from two directions, by adding more equations to solve for depth. \citep{schneider2010fitting}
@@ -188,7 +190,7 @@ Using this system, the order of the targets does not matter. The mesh need not b
 
 \section{Sensor driver software} \label{literature.drivers}
 
-When the work on this thesis began, at least three different drivers for Kinect were available. 
+In this section, we compare driver software for depth sensors---more specifically for Microsoft Kinect, which we used in this research. When the work on this thesis began, three drivers were available, two of which were bundled with a software library for utilizing the sensor input.
 
 \subsection{Microsoft Kinect SDK}
 
