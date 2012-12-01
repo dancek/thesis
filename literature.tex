@@ -158,7 +158,7 @@ The work of \citet{hirshbergc2011evaluating} focuses on aligning human laser sca
 
 MakeHuman \citep{makehuman} is an open source software application for 3D human modeling.
 
-MakeHuman has an androgynous base mesh that supposedly depicts an average human. It can be modified in diverse ways using a number of predefined \term{targets} that define deformations. A commendable amount of work has been put into refining the base mesh and targets. Initially it seems like an arbitrary human could be accurately modeled using MakeHuman, given enough time for fine-tuning.
+MakeHuman has an androgynous base mesh meant to depict an average human. It can be modified in diverse ways using a number of predefined \term{targets} that define deformations. A commendable amount of work has been put into refining the base mesh and targets. Our initial impression was that any human could be accurately modeled using MakeHuman, given enough time for fine-tuning---though realistically this is untrue and limitations do exist.
 
 \begin{figure}
     \centering
@@ -174,7 +174,7 @@ MakeHuman has an androgynous base mesh that supposedly depicts an average human.
     \label{fig:makehuman-female}
 \end{figure}
 
-Modeling different kinds of people is very easy using the MakeHuman application. For example, both the middle-aged male in figure \ref{fig:makehuman-male} and the young female in \ref{fig:makehuman-female} are made in MakeHuman by changing a couple of the major parameters. Getting from one to the other only takes a few drags of sliders and a couple of seconds. Of course, more detailed changes are possible and tuning them by hand might take time. To give a general idea of the broadness, there are over a hundred targets in 15 categories just for facial features.
+Modeling different kinds of people is very easy using the MakeHuman application. For example, both the middle-aged male in figure \ref{fig:makehuman-male} and the young female in \ref{fig:makehuman-female} are made in MakeHuman by changing a couple of the major parameters. Getting from one to the other only takes a few drags of sliders and a couple of seconds. Of course, more detailed changes are possible and tuning them by hand can take time. To give a general idea of the broadness, there are over a hundred targets in 15 categories just for facial features.
 
 Technically, the base mesh used by MakeHuman has indexed vertices, each with its own coordinates. Each target defines a vector for each vertex---this is often zero for most vertices, in which case only the non-zero vectors are actually stored. A target can be applied with a weight that is a real number, usually chosen between 0.0 and 1.0. Zero is the default, meaning the target does not change the mesh. When targets weights are changed, the coordinates for each vertex are recalculated as
 %
