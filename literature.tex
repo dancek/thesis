@@ -20,15 +20,18 @@ The Iterative Closest Point (ICP) algorithm is commonly used for aligning two po
 \caption{Iterative Closest Point}
 \label{literature.pseudoicp}
 \begin{algorithmic}
-    \For{1..iterations}
-        \ForAll{point $x_i$ in X}
-            \State $y_i$ = closest point in Y
+    \Procedure{ICP}{$X, Y$} \Comment{$X, Y$ are point sets}
+        \State $T \gets I$ \Comment{identity transformation}
+        \For{$n \gets 1..\text{iterations}$}
+            \ForAll{$x_i \in X$}
+                \State $y_i \gets \text{closest point in } Y$
+            \EndFor
+            \State find $T_n$ that minimizes $\sum_i (T_n x_i-y_i)^2$
+            \State $X \gets T_n X$ \Comment{$T_n$ is a rigid transformation}
+            \State $T \gets T_n T$
         \EndFor
-        \State error := $sum_i (x_i-y_i)^2$
-        \State find rigid transformation $T_i$ that minimizes error
-        \State apply $T_i$ on X
-    \EndFor
-    \State \Return output T = $product_i T_i$
+        \State \Return T
+    \EndProcedure
 \end{algorithmic}
 \end{algorithm}
 
