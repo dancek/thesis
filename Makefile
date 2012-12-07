@@ -26,3 +26,9 @@ edit:
 
 view:
 	evince thesis.pdf &
+
+work:
+	git pull
+	make edit
+	make
+	make view
