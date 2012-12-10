@@ -262,13 +262,13 @@ However, considering how the target system works, more deduction can be done bef
 
 \section{Texturing}
 
-No actual implementation of texturing the mesh was made in this project, but possible approaches were considered. Of course, simple mixing of colors to get an overall color for each body part was tested for the simple ``cylinder man'' approach, and can be seen in figure~\ref{fig:cylinders}.
+No actual implementation of texturing the mesh was made in this project, but possible approaches were considered. Of course, simple mixing of colors to get an overall color for each body part was tested for the simple ``cylinder man'' approach, and can be seen in figure~\ref{fig:cylinders}. In this section we describe and analyze the ideas we have for texturing, while acknowledging that no implementations were made.
 
 A simple way to get some more colorful details in the mesh would be to assign each vertex the color of the nearest point. This would allow visually representing some major details, such as the edge between a t-shirt and skin, or a colorful image on a shirt, or different color of face and hair.
 
 For a better level of detail, an actual texture would be needed. Different approximations can be chosen to project the points to the surface (assuming they are not exactly on the surface, which they rarely are). One would be to use the surface normal coinciding with the point, and project the point on the normal's intersection with the mesh. Similarly, a normal of the bone could be used (where any line starting from the end of the bone and at over a 90 degree angle to the bone is considered suitable, too).
 
-These approaches would work best by first finding the base color, as already implemented, and then adding local colors as appropriate. Each point should make a small ``splat'', and the different colors that coincide should be averaged. The choice of color space for averaging should be made based on practical evaluation, but at least averaging in RGB space seems to work reasonably well.
+These approaches would work best by first finding the base color, as already implemented, and then adding local colors as appropriate. Each point should make a small ``splat'', and the different colors that coincide should be averaged. The choice of color space for averaging should be made based on practical evaluation. We briefly tested averaging in the HSB (hue, saturation, brightness) and RGB spaces on the ``cylinder man'' and the color mixing results seemed to be more intuitive in RGB space.
 
 A confidence measure could be used, so that points far from the surface have a smaller effect on the final color. Practically a Gaussian function such as
 \begin{equation*}
