@@ -75,9 +75,9 @@ Figure~\ref{fig:pcd-segmented} shows a body segmented according to these parts.
 
 Body part segmentation as described was implemented in Processing using SimpleOpenNI. The method used is simple: for each point, compute the distance to all bones and choose the nearest one. This is not optimal, but could be improved later on. A possible optimization would be to only compute the distance to all bones for every $n$th point, and only consider the two closest bones for neighboring points. Another one would be to project the bones to the image coordinates, and only compute 3D distances where the segmentation is not obvious in 2D.
 
-After seeing the segmentation in action, we decided further study of the point clouds and skeleton positions frame by frame would be useful. To this end, we created a writer for the PCD file format used by PCL in Processing based on the released specification \citep{pcdspec}. This allowed making recordings of the point clouds that also contain body part index and RGB color as additional fields, something the file format has built-in support for. Furthermore, the PCD viewer included in the PCL distribution allows visualizing this---the colored body parts in figure~\ref{fig:pcd-segmented} were achieved with no modifications to the viewer application.
+After seeing the segmentation in action, we decided further study of the point clouds and skeleton positions frame by frame would be useful. To this end, we created a software module for writing the PCD file format used by PCL in Processing based on its specification \citep{pcdspec}. This allowed making recordings of the point clouds that also contain body part index and RGB color as additional fields, something the file format has built-in support for. Furthermore, the PCD viewer included in the PCL distribution allows visualizing this---the colored body parts in figure~\ref{fig:pcd-segmented} were achieved with no modifications to the viewer application.
 
-We also wanted the option to experiment with the original data: the skeleton joint positions. As the PCD file format supported comments (beginning with a \#), we found it simplest to invent a header format that is interpreted as a comment in existing applications but could be read by software of our own. Skeleton data is required to be in the beginning of the file, before the PCD header. Saving more than one skeletons is supported, and each skeleton definition begins by stating the user:
+We also wanted the option to experiment with the original data: the skeleton joint positions. As the PCD file format supported comments (beginning with a \#), we found it simplest to invent a header format that is interpreted as a comment in existing applications but could be read by software of our own. Skeleton data is required to be in the beginning of the file, before the PCD header and data. Saving more than one skeletons is supported, and each skeleton definition begins by stating the user:
 %
 \code{
     \# user 1
@@ -90,8 +90,6 @@ Then each joint position is listed along with its position, rotation and the con
 }
 %
 where $p$ is position, $c$ is the confidence of a value and $q$ is the rotation quaternion. After the skeleton definitions comes the standard PCD header.
-
-\fixme{TODO: example PCD listing?}
 
 For experimentation, we created functions in MATLAB and Python (NumPy) for importing the plain-text PCD file format\footnote{There are actually two different data formats supported in the PCD specification: the plain-text ASCII format where each point is on its own line, and a binary format where the data is a direct memory dump of the point cloud data structure. PCL includes an utility to convert between these formats, so we found it currently unnecessary to support the binary format in our own tools.} with our own skeleton extension. Some experimentation and plotting of the data was made in both, but generally PCL seemed to be a better platform for working with point clouds than either MATLAB or Numpy.
 
