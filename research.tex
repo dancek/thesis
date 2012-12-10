@@ -143,7 +143,7 @@ Obviously, a more human-like model was needed. The "cylinder man" could be usabl
     \begin{minipage}{0.49\textwidth}
         \includegraphics[width=\textwidth]{pinocchio-left}
     \end{minipage}
-    \caption{The mesh scanned using Kinfu and rigged using Pinocchio. The skeleton is shown in olive.}
+    \caption{The mesh scanned using Kinfu and rigged using Pinocchio. The skeleton is shown in olive. \fixme{TODO: change to an animated version}}
     \label{fig:hannu-front}
 \end{figure}
 
@@ -158,7 +158,7 @@ Obviously, a more human-like model was needed. The "cylinder man" could be usabl
 
 As the Kinfu implementation was available, this approach was tested in practice. The amount of manual work required turned out to still be surprisingly large.
 
-The software needed for this approach are the KinectFusion system for scanning the mesh, a mesh editor for making necessary changes in the mesh and an auto-rigging software. We used MeshLab and Pinocchio for the latter two purposes, as \citet{charpentier2011accurate} had also successfully employed them. At the time of writing, Kinfu and Pinocchio needed to be compiled manually. Both have command-line interfaces that take a little getting used to; similarly, MeshLab's GUI (Graphical User Interface) is slightly confusing for a beginner.
+The software needed for this approach are a system for scanning the mesh, a mesh editor for making necessary changes in the mesh and an auto-rigging software. We used Kinfu, MeshLab and Pinocchio respectively for these purposes. \citet{charpentier2011accurate} had also successfully employed MeshLab as the mesh editor and Pinocchio as the auto-rigging software. At the time of writing, Kinfu and Pinocchio needed to be compiled manually. Both have command-line interfaces that take a little getting used to; similarly, MeshLab's GUI (Graphical User Interface) is slightly confusing for a beginner.
 
 The actual scanning requires two persons: one to be scanned and one to scan. The scanned subject needs to remain still while the other person carefully goes around them, slowly moving the Kinect so that as much of the body as possible can be seen. After this is done, the user presses a key to extract a mesh from the TSDF. This operation can only be completed if the GPU has at least 1.5 gigabytes of memory; otherwise, it's possible to change Kinfu source code to lower the TSDF resolution and recompile. The extracted mesh is then saved to disk by pressing another key.
 
