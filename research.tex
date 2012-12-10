@@ -4,11 +4,11 @@ In this chapter, the work towards reconstructing a moving human in 3D is describ
 
 \section{Obtaining point cloud data}
 
-The first step towards achieving anything with a Kinect is, obviously, to read its sensor data to the computer. This is not trivially easy considering that Kinect was originally only meant to be an Xbox 360 accessory. Each of the three drivers mentioned in section \ref{literature.drivers} were installed and tested by writing trivial software using them.
+The first step towards achieving anything with a Kinect is to read its sensor data to the computer. This is not trivial considering that Kinect was originally only meant to be an Xbox 360 accessory. Each of the three drivers mentioned in section \ref{literature.drivers} were installed and tested by writing simple software using them.
 
 Skeleton tracking using the Microsoft SDK was tested by compiling a sample application and making modifications to it. The API seems to be good and usable, and the skeleton tracking methods work quite well. Fast movement and occlusion caused problems such as the skeleton jumping into weird poses for a short time.
 
-OpenNI was tested using the SimpleOpenNI \citep{simpleopenni} wrapper for Processing \citep{processing}. The included examples were plentiful and diverse, and allowed for quickly trying out own ideas (probably in part due to familiarity with the Processing environment).
+OpenNI was tested using the SimpleOpenNI \citep{simpleopenni} wrapper for Processing \citep{processing}. The included examples were plentiful and diverse, and allowed us to quickly try out our own ideas (probably in part due to our familiarity with the Processing environment).
 
 Of the three drivers, libfreenect was the easiest to start working with. By installing the OpenKinect plug-in for Processing \citep{shiffman2010} \citep{processing}, the Kinect was up and running in minutes. Development was easy given the bundled examples, which include creating point clouds as shown by \citet{fisher2010}. Apparently the functionality is still quite low-level, and thus not very suitable for trying to capture human body details.
 
