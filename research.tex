@@ -272,15 +272,12 @@ For a better level of detail, an actual texture would be needed. Different appro
 
 These approaches would work best by first finding the base color, as already implemented, and then adding local colors as appropriate. Each point should make a small ``splat'', and the different colors that coincide should be averaged. The choice of color space for averaging should be made based on practical evaluation. We briefly tested averaging in the HSB (hue, saturation, brightness) and RGB spaces on the ``cylinder man'' and the color mixing results seemed to be more intuitive in RGB space.
 
-A confidence measure could be used, so that points far from the surface have a smaller effect on the final color. Practically a Gaussian function such as
-\begin{equation*}
-    e^{-x^2},
-\end{equation*}
-or more generally,
-\begin{equation*}
-    a e^{-b x^2} \mid a, b \in \mathbb{R}_+
-\end{equation*}
-could be used for the weight of a point as a function of its distance to the surface, and also to control the color intensity of the splat.
+A confidence measure could be used, so that points far from the surface have a smaller effect on the final color. Practically a Gaussian function of the form
+\begin{align*}
+    f \colon \mathbb{R}_{\ge 0} & \to \mathbb{R}_+ \\
+                              x & \mapsto a e^{-b x^2} \mid a, b \in \mathbb{R}_+
+\end{align*}
+could be used for the weight of a point as a function of its distance to the surface, and also to control the color intensity of the splat (as a function of distance to its center).
 
 Another method of coloring the texture could be to pose the created model to correspond with silhouettes in the RGB images. Then the projection would be made through a camera ray from the image plane to the surface. This would practically be difficult to implement, as optimally the texturing should be done for previous frames using the current mesh. The texture segments from different frames should then be somehow stitched together.
 
