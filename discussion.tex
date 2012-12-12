@@ -6,6 +6,16 @@ In this chapter, we discuss the work completed towards reconstructing a 3D mesh 
 
 \fixme{TODO: graphics showing 1) kinect depth 2) point cloud 3) segmenting 4) measurement 5) calculation 6) makehuman}
 
+\newtopic
+
+The scope of our work was human body reconstruction, and we chose a Microsoft Kinect for Xbox 360 as the hardware sensor to be used. We tried using three different driver libraries for the hardware, and decided OpenNI and NITE to be the most suitable. This choice was based on impressions gained through brief testing---a further assessment would be required to objectively decide whether OpenNI is truly better than Microsoft Kinect SDK for the task. We outline the known differences in section~\ref{literature.drivers}. However, we concede that the accuracy of skeleton tracking is important, and our knowledge of it is inexact. Ideally, we would have utilized an open source skeleton tracking system that has been thoroughly tested---if one existed.
+
+The choice of sensor dictated that work would go on using 3D point data. Image-based reconstruction deserves to be researched, too, but requires a better RGB sensor than the one Kinect has. In principle, using depth information should make reconstruction very easy, but in practice the inaccuracy and noise cause difficulties. This became apparent as work progressed.
+
+Our raw data, then, comprised point clouds gathered using OpenNI, with users segmented from the background and their skeletons tracked by NITE.
+
+We decided that reconstruction should become easier if we further segment the point cloud into sub-clouds containing points of different body parts.
+
 \fixme{ \\
     TODO: review the best/chosen approach step by step \\
     - kinect data via openni \\
@@ -16,7 +26,6 @@ In this chapter, we discuss the work completed towards reconstructing a 3D mesh 
     - makehuman measurement plugin \\
     - (blender for animation) \\
 }
-
 
 \section{Future work}
 
