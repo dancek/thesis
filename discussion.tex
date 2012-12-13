@@ -4,7 +4,7 @@
 
 In this chapter, we discuss the work completed towards reconstructing a 3D mesh of the human body and outline suggestions for making a comprehensive implementation. We also analyze the choices made and the operability of different parts of the system. Finally, we conclude by reviewing the major achievements of this thesis, while examining problems in planning and conducting the research.
 
-\fixme{TODO: graphics showing 1) kinect depth 2) point cloud 3) segmenting 4) measurement 5) calculation 6) makehuman}
+\fixme{TODO: graphics showing 1) kinect depth 2) point cloud 3) segmenting 4) measurement 5) calculation 6) makehuman} \label{fig:phases}
 
 \newtopic
 
@@ -14,7 +14,9 @@ The choice of sensor dictated that work would go on using 3D point data. Image-b
 
 Our raw data, then, comprised point clouds gathered using OpenNI, with users segmented from the background and their skeletons tracked by NITE.
 
-We decided that reconstruction should become easier if we further segment the point cloud into sub-clouds containing points of different body parts.
+We decided that reconstruction should become easier if we further segment the point cloud into sub-clouds containing points of a single body part. The exact manner this was done was a nearest-neighbor search; each point is assigned to the nearest bone. This makes our approach heavily dependent on the skeleton data and vulnerable to errors therein. Moreover, the amount of bones in the NITE skeleton is small, yielding few body parts. On the other hand, better segmentation would require more a priori knowledge---perhaps a skeleton with more bones or a machine learning algorithm with a database of segmented bodies. Consequently, we could not realistically get significantly better body part segmentation given the resources available.
+
+Another consideration is whether a method that doesn't rely on body part segmentation would be feasible. This is actually the case with the method \citet{weiss2011home} employ, with notable success. Using an existing template mesh, posing it similarly to the user and optimizing according to the point cloud is an approach worthy of consideration. Nonetheless, we chose not to extend our work in this direction, as the computational difficulty of such approaches has been great. We chose to strive for a system simple enough to work in real time instead.
 
 \fixme{ \\
     TODO: review the best/chosen approach step by step \\
