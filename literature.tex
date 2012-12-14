@@ -55,24 +55,18 @@ The algorithm developed by \citet{huang2011visual} is not point cloud alignment 
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{kinfu-ray.png}
-    \caption{Kinfu showing a raytraced view of its TSDF grid, with the camera at the same position as the Kinect is.}
-    \label{fig:kinfu-ray}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{kinfu-depth.png}
-    \caption{The raw depth image from Kinect, at the same moment as the raytraced image in Figure~\ref{fig:kinfu-ray} was drawn.}
-    \label{fig:kinfu-depth}
-\end{figure}
-
-\begin{figure}
-    \centering
+    \begin{minipage}{0.49\textwidth}
+        \includegraphics[width=\textwidth]{kinfu-ray}
+    \end{minipage}
+    \begin{minipage}{0.49\textwidth}
+        \includegraphics[width=\textwidth]{kinfu-depth}
+    \end{minipage}
     \includegraphics[width=\textwidth]{kinfu-mesh.png}
-    \caption{Kinfu showing the mesh generated from the TSDF just moments earlier, with the camera in the same position as in Figure~\ref{fig:kinfu-ray}.}
+    \caption{Kinfu in action, reconstructing a desk with some objects. Three different views are shown, each captured at the same moment with the same camera position. Top left: a raytraced view of the TSDF. Top right: the raw depth image from Kinect. Bottom: a mesh generated from the TSDF just moments earlier (this could not be done at the same moment, as execution is real-time and mesh generation takes a second).}
     \label{fig:kinfu-mesh}
 \end{figure}
+
+\fixme{TODO: refer to figure}
 
 KinectFusion is a real-time 3D reconstruction system that uses data from a moving Kinect sensor. It performs camera position and pose tracking, surface reconstruction and rendering. \citep{izadi2011kinectfusion}
 
