@@ -6,6 +6,32 @@ In this chapter, we discuss the work completed towards reconstructing a 3D mesh 
 
 \fixme{TODO: graphics showing 1) kinect depth 2) point cloud 3) segmenting 4) measurement 5) calculation 6) makehuman} \label{fig:phases}
 
+\begin{figure}
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \includegraphics[width=\textwidth]{depth}
+    \end{minipage}
+    \begin{minipage}{0.49\textwidth}
+        \includegraphics[width=\textwidth]{pcd-plain}
+    \end{minipage}
+    \begin{minipage}{0.49\textwidth}
+        \includegraphics[width=\textwidth]{pcd-segmented}
+    \end{minipage}
+    \begin{minipage}{0.49\textwidth}
+        \includegraphics[width=\textwidth]{pcd-segmented}
+    \end{minipage}
+    \begin{minipage}{0.49\textwidth}
+        \includegraphics[width=\textwidth]{spreadsheet1}
+    \end{minipage}
+    \begin{minipage}{0.49\textwidth}
+        \includegraphics[width=\textwidth]{measured-hannu}
+    \end{minipage}
+    \caption{\fixme{TODO: better images; numbering; description; create image 4 from image 3}}
+    \label{fig:steps}
+\end{figure}
+
+\fixme{TODO: refer to figure}
+
 \newtopic
 
 The scope of our work was human body reconstruction, and we chose a Microsoft Kinect for Xbox 360 as the hardware sensor to be used. We tried using three different driver libraries for the hardware, and decided OpenNI and NITE to be the most suitable. This choice was based on impressions gained through brief testing---a further assessment would be required to objectively decide whether OpenNI is truly better than Microsoft Kinect SDK for the task. We outline the known differences in section~\ref{literature.drivers}. However, we concede that the accuracy of skeleton tracking is important, and our knowledge of it is inexact. Ideally, we would have utilized an open source skeleton tracking system that has been thoroughly tested---if one existed.
