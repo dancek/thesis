@@ -17,21 +17,21 @@ breastSize 0.000000
 stomach 0.000000
 pelvisTone 0.000000
 breastDistance 0.000000
-measure lowerarmlenght -0.285156
-measure underbust 0.298828
+measure lowerarmlenght 0.216858
+measure underbust -0.623969
 measure lowerlegheight -0.166667
-measure napetowaist 0.041667
-measure neckheight 0.488281
+measure napetowaist 0.396973
+measure neckheight 0.875000
 measure upperlegheight -0.270833
 measure neckcirc 0.722656
 measure ankle 1.000000
-measure calf 1.000000
+measure calf 0.748352
 measure wrist 0.999023
-measure bust 0.031250
+measure bust 0.184509
 measure frontchest -0.306159
-measure waisttohip 0.229167
-measure upperarm 0.999023
-measure thighcirc 1.000000
+measure waisttohip 0.698893
+measure upperarm 0.628111
+measure thighcirc 0.224609
 measure hips 0.395833
-measure waist 0.166667
+measure waist 0.388387
 skinTexture texture.png
