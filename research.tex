@@ -124,9 +124,14 @@ We made different approaches to this problem, and in this section we describe ea
 
 \subsection{Geometric surfaces} \label{cylinderman}
 
-\fixme{TODO: cylinder man figure \label{fig:cylinders}}
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{cylinder2}
+    \caption{A screenshot of our application showing the ``cylinder man'', with point cloud display off. The colors are average colors of the user, and the pose is the same as the user has at the moment. The yellow lines demarcate the Kinect view frustum.}
+    \label{fig:cylinders}
+\end{figure}
 
-\fixme{TODO: expand this section a bit}
+\fixme{TODO: expand this section a bit; refer to figure}
 
 As the very first prototype, a simple cylinder approximation was used. A cylinder was fitted to the point cloud of a body part, and colored according to its average color. This was good for testing the segmentation and getting a general idea of how accurate the skeleton is. Some corner cases were also found using this prototype. For example, when a lot of occlusion occurs the NITE skeleton may begin glitching. The body part segmentation also has errors at times when bones are very near each other.
 
