@@ -107,7 +107,19 @@ The CUDA implementations of EM-ICP and Softassign published by \citet{tamaki2010
 
 \subsection{Point cloud accumulation}
 
-\fixme{TODO: figure}
+\begin{figure}
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \includegraphics[width=\textwidth]{klaus1}
+    \end{minipage}
+    \begin{minipage}{0.49\textwidth}
+        \includegraphics[width=\textwidth]{klaus2}
+    \end{minipage}
+    \caption{The accumulated point cloud of a user, shown in two different poses.}
+    \label{fig:klaus}
+\end{figure}
+
+\fixme{TODO: refer to figure}
 
 Another approach was suggested by Klaus Förger from our research group, led by professor Tapio Takala. The idea is to gather point sets for different versions of each body part, depending on joint angles and orientation relative to the camera. Instead of trying to align point clouds, we would try to gather a lot of data and then use statistical methods such as averaging to avoid outliers.
 
