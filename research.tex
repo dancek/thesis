@@ -39,11 +39,11 @@ The point cloud representation allows geometrical operations, one practical appl
     \item[Biased normals.] Round objects seem flatter around the edges than they actually are. No measurements can be made where the surface is tangential towards the camera, and if there's a laser point on a nearly-tangential surface, its intensity is too low to be measured. Because depth values for most pixels are in fact interpolated from nearby measurements, and measurements can only be made on the relatively flat, camera-facing parts, objects seem to be flat. In other words, continuous depth variations in a strip of neighboring pixel are moderate at most.
 \end{description}
 
-Further experimentation on point clouds was made by compiling PCL and trying its examples. We made simple C++ code of our own utilizing PCL and OpenNI to grab a frame from Kinect and save it as a point cloud in the PCL file format. Point clouds captured this way could then be used as input for applications included in the PCL distribution. We examined the convex and concave hulls of point clouds to see if they might be useful. We tested fast mesh generation, which allows viewing an approximate surface of the Kinect view in real time, albeit with a lot of noise. We also compiled Kinfu and experimented with it, even making some changes of our own to it---more on that in sections \ref{kinfurig} and \ref{voxelgrid}. One bug in the PCL IO module was also found and fixed while writing our own code\footnote{See \url{http://dev.pointclouds.org/issues/812}}.
+Further experimentation on point clouds was made by compiling PCL and trying its examples. We made simple C++ code of our own utilizing PCL and OpenNI to grab a frame from Kinect and save it as a point cloud in the PCL file format. Point clouds captured this way could then be used as input for applications included in the PCL distribution. We examined the convex and concave hulls of point clouds to see if they might be useful. We tested fast mesh generation, which allows viewing an approximate surface of the Kinect view in real time, albeit with a lot of noise. We also compiled Kinfu and experimented with it, even making some changes of our own to it---more on that in sections \ref{approach.autorig} and \ref{approach.parallel}. One bug in the PCL IO module was also found and fixed while writing our own code\footnote{See \url{http://dev.pointclouds.org/issues/812}}.
 
 % TODO: more \bs{important} things done with PCL
 
-\section{Body part segmentation}
+\section{Body part segmentation} \label{approach.segmentation}
 
 \begin{figure}
     \centering
@@ -93,7 +93,7 @@ where $p$ is position, $c$ is the confidence of a value and $q$ is the rotation 
 
 For experimentation, we created functions in MATLAB and Python (NumPy) for importing the plain-text PCD file format\footnote{There are actually two different data formats supported in the PCD specification: the plain-text ASCII format where each point is on its own line, and a binary format where the data is a direct memory dump of the point cloud data structure. PCL includes an utility to convert between these formats, so we found it currently unnecessary to support the binary format in our own tools.} with our own skeleton extension. Some experimentation and plotting of the data was made in both, but generally PCL seemed to be a better platform for working with point clouds than either MATLAB or Numpy.
 
-\section{Point cloud alignment}
+\section{Point cloud alignment} \label{approach.alignment}
 
 The naïve approach to modeling uses data only from a single frame. However, this is unsatisfactory as in practice only less than a half of a human can be seen at once---when the front side is visible, the back is not. Another consideration is that the data tends to be noisy and inaccurate. Accumulating data over time makes it possible to remove some of the noise and improve accuracy.
 
@@ -105,7 +105,7 @@ Of course, we could look at making our own GPGPU implementations of registration
 
 The CUDA implementations of EM-ICP and Softassign published by \citet{tamaki2010softassign} were downloaded. Their compilation posed slight problems as they used OpenGL Utility Library (GLU) functions that were deprecated and then removed years ago. After some modifications to the code and build system, the implementations were successfully compiled. The algorithms seem to be more robust than the standard ICP, but they are significantly slower. Quick experimentation showed that these registration methods would not be suitable for real-time operation.
 
-\subsection{Point cloud accumulation}
+\subsection{Point cloud accumulation} \label{approach.accumulation}
 
 \begin{figure}
     \centering
@@ -128,13 +128,13 @@ This approach extends the assumption that each body part is a rigid object by ca
 A prototype of the accumulation code was made by Klaus. The implementation includes rendering of the posed skeleton, along with point clouds gathered with the current joint angles and orientations. Heuristics are used to omit unreliable observations, such as ones with fast movement. The RGB and depth images from Kinect tend to be slightly out of sync, causing errors relative to movement speed in the 3D coordinates of the points. This is most apparent in the edge between foreground and background.
 
 
-\section{Creating a rigged mesh}
+\section{Creating a rigged mesh} \label{approach.mesh}
 
 The major objective in our research is to generate a mesh of the user, and rig it so that it can be animated. All the other work we have done has been made towards this goal---to transform the data such that creating a rigged mesh is possible. Finding the surface mesh and rigging it can be considered two separate tasks, or they can be done simultaneously. The choice of approach affects both tasks.
 
 We made different approaches to this problem, and in this section we describe each approach taken.
 
-\subsection{Geometric surfaces} \label{cylinderman}
+\subsection{Geometric surfaces} \label{approach.cylinders}
 
 \begin{figure}
     \centering
@@ -150,7 +150,7 @@ As the very first prototype, a simple cylinder approximation was used. A cylinde
 Obviously, a more human-like model was needed. The "cylinder man" could be usable as an avatar, and is certainly recognizable as human-like. But certainly its shape was nowhere near a real human body. Different simple shapes such as ellipsoids were considered. This would still have left the problem of connecting the body parts. A solution based on meta-blobs might have been feasible, but in the end this approach started to seem quite cumbersome. And still the accuracy would have left much to be hoped for.
 
 
-\subsection{Kinfu and automatic rigging} \label{kinfurig}
+\subsection{Kinfu and automatic rigging} \label{approach.autorig}
 
 \begin{figure}
     \centering
@@ -189,7 +189,7 @@ Finally, Pinocchio successfully rigged the mesh and a walking animation of the u
 
 All in all, the amount of manual work required to create a rigged mesh from scratch was about an hour with some earlier experience of the tools. The process could possibly be automated, but implementing such an automatic system is far from trivial. The scanning phase would still necessarily need another person to move the Kinect around, and the time requirements would probably be around a minute for scanning and five minutes for processing. The method is thus feasible, but not as easy as \citet{charpentier2011accurate} suggests.
 
-\subsection{Parallel Kinfu for each body part} \label{voxelgrid}
+\subsection{Parallel Kinfu for each body part} \label{approach.parallel}
 
 \begin{figure}
     \centering
@@ -232,9 +232,9 @@ These problems led us to consider this approach unsalvageable for now. The idea 
 
 \newtopic
 
-Due to the work already done on Kinfu (see section~\ref{voxelgrid}) it was easy to make minor changes for recording trajectories. This proved useful in other research, which yielded one conference paper \citep*{tykkalavisapp} and one journal article \citep*{tykkalavcir}. Both are accepted to be published in 2013.
+Due to the work already done on Kinfu it was easy to make minor changes for recording trajectories. This proved useful in other research, which yielded one conference paper \citep*{tykkalavisapp} and one journal article \citep*{tykkalavcir}. Both are accepted to be published in 2013.
 
-\subsection{Parametric human body model}
+\subsection{Parametric human body model} \label{approach.makehuman}
 
 \begin{figure}
     \centering
@@ -259,7 +259,7 @@ Due to the work already done on Kinfu (see section~\ref{voxelgrid}) it was easy 
 
 Another approach is to use the information readily available about the body parts being modeled. Instead of allowing arbitrary shapes, the space of possible shapes can be limited to what the body parts tend to look like.
 
-Our ``cylinder man'' approach described in section~\ref{cylinderman} is partly based on the same ideology: limbs look (slightly) like cylinders, so using cylinders to represent them is a workable approximation. However, the shortcomings of modeling the human body as geometric shapes were found to be too great to bypass. The best parametric model for the purpose would then be something that already assumes the generic human shape, while allowing modifications to single body parts. The SCAPE model \citep{anguelov2005scape} used by \citet{weiss2011home} fits the description, but is not suitable for real-time evaluation. A more appropriate approach is taken by MakeHuman \citep{makehuman}, which uses a base mesh and has defined parameters that can be used to reshape different parts of the mesh.
+Our ``cylinder man'' approach described in section~\ref{approach.cylinders} is partly based on the same ideology: limbs look (slightly) like cylinders, so using cylinders to represent them is a workable approximation. However, the shortcomings of modeling the human body as geometric shapes were found to be too great to bypass. The best parametric model for the purpose would then be something that already assumes the generic human shape, while allowing modifications to single body parts. The SCAPE model \citep{anguelov2005scape} used by \citet{weiss2011home} fits the description, but is not suitable for real-time evaluation. A more appropriate approach is taken by MakeHuman \citep{makehuman}, which uses a base mesh and has defined parameters that can be used to reshape different parts of the mesh.
 
 Especially the Measurement plug-in in MakeHuman (see figure~\ref{fig:makehuman-measurement}) was promising, as it contained a good amount of parameters that mostly did not affect overlapping parts of the base mesh. For example, there are targets for arm length and circumference.
 
@@ -279,7 +279,7 @@ However, considering how the target system works, more deduction can be done bef
 
 \fixme{TODO: write this so that it makes sense and reflects our practical achievements}
 
-\section{Texturing}
+\section{Texturing} \label{approach.texturing}
 
 No actual implementation of texturing the mesh was made in this project, but possible approaches were considered. Of course, simple mixing of colors to get an overall color for each body part was tested for the simple ``cylinder man'' approach, and can be seen in figure~\ref{fig:cylinders}. In this section we describe and analyze the ideas we have for texturing, while acknowledging that no implementations were made.
 
