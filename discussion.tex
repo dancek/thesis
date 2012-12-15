@@ -62,15 +62,18 @@ Looking back, many significant decisions were made. They had to be made, as the 
 
 \section{Future work}
 
-\fixme{TODO: write this properly \\
-- find best measurements and their equivalence to parameters \\
-- implement real-time fitting of targets \\
-- optimize body part segmentation \\
-- limbwise kinfu with something else than ICP \\
-- texturing \\
-- animation (makehuman? blender? something else?) \\
-- research Klaus's point cloud accumulation \\
-}
+Given the nature of this thesis, plenty of opportunities for further research exist.
+
+The approach of automatically creating a MakeHuman model described in section~\ref{approach.makehuman} was left unfinished. The system could be finished by finding proper correspondences of a point cloud and MakeHuman parameters. Ideally research should be made to see how actual measures of the body (such as forearm length and waist circumference) can be best approximated from point clouds. Furthermore, the relevant MakeHuman targets should be chosen and their effect determined so that their required weights can be directly computed.
+
+The body part segmentation method portrayed in section~\ref{approach.segmentation} was a limiting factor in our work. Especially, finding more parts than we currently have would be beneficial. For example, discerning hand from forearm, foot from leg and neck from head would make measurements more accurate.
+
+We considered texturing methods and discuss them in section~\ref{approach.texturing} but never tried implementing them. If a reconstruction system is later otherwise completed, texturing should also be implemented.
+
+Things we experimented on but did not investigate in depth include the point cloud accumulation approach described in section~\ref{approach.accumulation} and the parallel Kinfu approach depicted in section~\ref{approach.limbwise}. The point cloud accumulation method needs research on how a mesh can be reconstructed from the collected data. The parallel Kinfu approach might work better if visual features were considered instead of or in addition to geometric features. Testing this in practice would be easy if the source code to Kintinuous is released, as Kintinuous already supports three different tracking methods \citep{Whelan12rssw}.
+
+% also: animation with the makehuman approach
+
 
 \section{Conclusion}
 
