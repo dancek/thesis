@@ -6,17 +6,16 @@ As technology advanced, creating visual replications of humans became notably ea
 
 The age of computers has come since. The progress of computer graphics has inevitably lead to attempts at creating three-dimensional (3D) images of humans. Similarly to sculptures, creating computer 3D representations require significant skill and a lot of hard work. As with two-dimensional (2D) images, technology can and already has made creating 3D images (or surface meshes) easier.
 
-Depth cameras---cameras that can measure depth in additional to saving a planar image---have recently become cheap and widely available. Normal cameras can automate the creation of 2D images, and depth cameras are on their way to automating the creation of 3D images.
+Depth cameras---cameras that can measure depth in addition to saving a planar image---have recently become cheap and widely available. Normal cameras can automate the creation of 2D images, and depth cameras are on their way to automating the creation of 3D images.
 
-While the depth camera technology is old, there were no consumer devices before Microsoft introduced Kinect for Xbox 360. Kinect contains a normal camera for visible light and also includes an infrared (IR) camera and a laser emitter for depth measurements. The technology is based on measuring the displacement of a known pattern, which can be used to calculate a 3D geometry. This method, called triangulation, is not the only possible one. Another variety of methods called time-of-flight is used in many earlier industrial depth sensors, and is based on measuring the time taken for a laser ray to travel.
+While the depth camera technology is old, there were no consumer devices before Microsoft introduced Kinect for Xbox 360. Kinect contains a normal camera for visible light and also includes an infrared (IR) camera and a laser emitter for depth measurements. Devices that measure color and depth are called RGB-D sensors---RGB for red, green and blue, and D for depth.
 
-\fixme{mention RGB-D and explain it here}
+The technology used in Kinect is based on measuring the displacement of a known pattern, which can be used to calculate a 3D geometry. This method, called triangulation, is not the only possible one. Another variety of methods called time-of-flight is used in many industrial depth sensors, and is based on measuring the time taken for a laser ray to travel.
 
-Originally, Kinect was only supported for Xbox 360. However, hobbyists quickly began projects to connect the Kinect to a PC. The API was soon reverse engineered. Later on Microsoft released an SDK to the public, allowing people to experiment with Kinect on a Windows PC.
+Originally, Kinect could only be used with Xbox 360. However, hobbyists quickly began projects to connect the Kinect to a PC. The API was soon reverse engineered. Later on Microsoft released an SDK to the public, allowing people to experiment with Kinect on a Windows PC.
 
-Afterwards, other consumer sensors were released. \fixme{Asus Xtion Pro/Live, what else}
+Afterwards, other consumer sensors have been released. Asus Xtion Pro and Asus Xtion Pro Live use the same PrimeSense PS1080 sensor hardware as Kinect does. Alternatives do exist, too; the Creative Interactive Gesture Camera and SoftKinetic DepthSense are time-of-flight based depth cameras at consumer prices.
 
-\fixme{TODO: explain the problem we're trying to solve here}
 Cheap depth cameras can already be used for 3D scanning static objects at home. However, to date there has been no software available for scanning humans moving freely. There's no fundamental reason why this can't be done. The possibility to create a 3D model of oneself is intriguing. This would have an enormous amount of applications, for example \fixme{in gaming, movie effects, fitting clothes, ...}.
 
 \fixme{TODO: make explicit constraints, i.e. formulate the problem accurately. Present a research question.}
