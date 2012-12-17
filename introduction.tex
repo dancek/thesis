@@ -8,24 +8,29 @@ The age of computers has come since. The progress of computer graphics has inevi
 
 Depth cameras---cameras that can measure depth in addition to saving a planar image---have recently become cheap and widely available. Normal cameras can automate the creation of 2D images, and depth cameras are on their way to automating the creation of 3D images.
 
-While the depth camera technology is old, there were no consumer devices before Microsoft introduced Kinect for Xbox 360. Kinect contains a normal camera for visible light and also includes an infrared (IR) camera and a laser emitter for depth measurements. Devices that measure color and depth are called RGB-D sensors---RGB for red, green and blue, and D for depth.
+While the depth camera technology is old, there were no consumer devices before Microsoft introduced Kinect for Xbox 360. Kinect contains a normal camera for visible light and also includes an infrared (IR) camera and a laser emitter for depth measurements \citep{fisher2010}. Devices that measure color and depth are called RGB-D sensors---RGB for red, green and blue, and D for depth.
 
-The technology used in Kinect is based on measuring the displacement of a known pattern, which can be used to calculate a 3D geometry. This method, called triangulation, is not the only possible one. Another variety of methods called time-of-flight is used in many industrial depth sensors, and is based on measuring the time taken for a laser ray to travel.
+The technology used in Kinect is based on measuring the displacement of a known pattern, which can be used to calculate a 3D geometry \citep{reichinger2011}. This method, called triangulation, is not the only possible one. Another variety of methods called time-of-flight is used in many industrial depth sensors, and is based on measuring the time taken for a laser ray to travel.
 
-Originally, Kinect could only be used with Xbox 360. However, hobbyists quickly began projects to connect the Kinect to a PC. The API was soon reverse engineered. Later on Microsoft released an SDK to the public, allowing people to experiment with Kinect on a Windows PC.
+Originally, Kinect could only be used with Xbox 360. However, hobbyists quickly began projects to connect the Kinect to a PC. The API was soon reverse engineered \citep{openkinect}. Later on Microsoft released an SDK to the public, allowing people to experiment with Kinect on a Windows PC \citep{KinectSDK}.
 
 Afterwards, other consumer sensors have been released. Asus Xtion Pro and Asus Xtion Pro Live use the same PrimeSense PS1080 sensor hardware as Kinect does. Alternatives do exist, too; the Creative Interactive Gesture Camera and SoftKinetic DepthSense are time-of-flight based depth cameras at consumer prices.
 
-Cheap depth cameras can already be used for 3D scanning static objects at home. However, to date there has been no software available for scanning humans moving freely. Still, there is no fundamental reason why this could not be done. The possibility to create a 3D model of oneself is intriguing. This would have an enormous amount of practical applications---using the player's actual body inside games, creation of movie effects, fitting clothes online, ordering tailor-made clothes without seeing a tailor, high-quality virtual meetings with low bandwidth, not to mention the various places where photographs of people could be replaced with 3D models of them.
+Cheap depth cameras can already be used for 3D scanning static objects at home \autocites{newcombe2011kinectfusion}{izadi2011kinectfusion}. However, to date there has been no software available for scanning humans moving freely. Still, there is no fundamental reason why this could not be done. The possibility to create a 3D model of oneself is intriguing. This would have an enormous amount of practical applications---using the player's actual body inside games, creation of movie effects, fitting clothes online, ordering tailor-made clothes without seeing a tailor, high-quality virtual meetings with low bandwidth, not to mention the various places where photographs of people could be replaced with 3D models of them.
 
-\fixme{TODO: make explicit constraints, i.e. formulate the problem accurately. Present a research question.}
+The possibilities granted by a technology to efficiently scan moving people are vast, but so are the technological challenges that must be solved. In an effort to pick a reasonable research subject, some seemingly arbitrary constraints must be chosen.
 
-The possibilities granted by a technology to efficiently scan moving people are vast, but so are the technological details that could be accounted for. In an effort to pick a reasonable research subject, some seemingly arbitrary constraints must be chosen.
+Firstly, we choose to pursue an actual working implementation (no matter how crude) instead of only a description of methods. We try to reach an implementation that works on a high-end PC using a single Microsoft Kinect for Xbox 360, and therefore could be utilized by hobbyists with moderate computer skills. We choose to develop on Linux, but strive to make the implementation multiplatform.
 
-Firstly, we choose to pursue an actual working implementation (no matter how crude) instead of only a description of methods. We try to reach an implementation that works on a high-end PC using a single Microsoft Kinect, and therefore could easily be utilized by most \fixme{hobbyists}. We arbitrarily choose to develop on Linux, but strive to make the implementation multiplatform.
+Secondly, we aim to reconstruct a moving person. Scanning static objects is already possible, and free software for the task is already available. However, this is unsatisfactory for scanning humans.
 
-Finally, we require that the implementation works in real time. This is because methods for offline modeling have already been presented (though there's no implementation available).
+Thirdly, we demand that the model can be animated. If it couldn't, we would in essence be creating static objects from moving ones---which is not significantly better than just scanning static objects, such as a person holding a pose.
+
+Fourthly, we require that our reconstruction system works in real time. This is because reconstruction methods that take a long computation time have already been presented \citep{weiss2011home}, though no implementation has been made available. We rather want a simple, inaccurate system that works instantaneously than a slow one that creates a very accurate model.
+
+Finally, we want the reconstructed model to be as accurate as possible while maintaining the other requirements. That is, it should resemble the scanned person as much as possible. Its bodily measures such as height should be similar to the actual person, and if possible, finer details such as the proportions of the face should mimic the person.
 
 The previously mentioned problem and constraints are formulated as the following research question:
 
-\fixme{Is it possible to generate a 3D model of the user in real time, using Microsoft Kinect (or equivalent sensor) and a consumer PC?} \fixme{TODO: mention motion; (surely this is possible, but how well?)}
+How can we reconstruct an animatable 3D model of a freely moving person in real time, using Microsoft Kinect and a consumer PC?
+
