@@ -4,15 +4,18 @@ In this chapter, we examine different areas of research relevant to scanning and
 
 \section{3D reconstruction}
 
-3D reconstruction means the process of taking real objects and making virtual objects of similar shape and appearance. This can be done using images from multiple viewpoints, but our focus is on methods using depth sensors. After such data is collected, there are various methods for creating a 3D representation of the object. Most tend to follow the pattern of first finding correspondences between different observations, possibly cleaning up data and finally making a mesh. We look at methods for aligning depth camera measurements and recently introduced depth camera--based reconstruction systems in this section.
+\term{3D reconstruction} means the process of taking real objects and making virtual objects of similar shape and appearance. This can be done using images from multiple viewpoints, but our focus is on methods using depth sensors. After such data is collected, there are various methods for creating a 3D representation of the object. Most tend to follow the pattern of first finding correspondences between different observations, possibly cleaning up data and finally making a mesh. We look at methods for aligning depth camera measurements and recently introduced depth camera--based reconstruction systems in this section.
 
 \citet{fabio2003point} overviews the process of converting a point cloud to a 3D polygon mesh and the problems involved. The main contributions of the paper are defining terminology, classifying algorithms and describing the state-of-the-art methods in 2003. No original research is described. Still, the article is helpful in obtaining a very general idea of the process of 3D reconstruction from point cloud data.
 
 
 \subsection{Point cloud alignment} \label{literature.alignment}
 
-\fixme{TODO: overview: what is this? why is this important?}
-% TODO: mention rigid and non-rigid registration
+\term{Point cloud alignment} means finding the relation between two different point sets. For example, views of a car from the front and from the front-right include a lot of common areas, but also have points not included in the other set. By aligning these point clouds we get a more comprehensive view of the car.
+
+This alignment process is also called \term{registration}. We especially focus on \term{rigid registration} algorithms, which means that the algorithm finds a \term{rigid transformation} (translation and rotation) from the coordinate system of one point cloud to another. \term{Non-rigid registration} methods do not assume the relation between the point sets is linear---such methods are better at dealing with noisy point clouds, but their computational cost tends to be too high for real-time use.
+
+\newtopic
 
 The Iterative Closest Point (ICP) algorithm is commonly used for aligning two point clouds. The algorithm was originally presented by \citet{besl1992method} and \citet{chen1991object}. A pseudocode description of ICP is shown in algorithm~\ref{literature.pseudoicp}. It works by finding corresponding points from the two point clouds. Then a rigid transformation that minimizes the error between the corresponding point pairs is searched for. This transformation is then applied. Iterating this multiple times, a local optimum should be found.
 
