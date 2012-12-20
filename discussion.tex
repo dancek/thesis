@@ -4,29 +4,26 @@
 
 In this chapter, we discuss the work completed towards reconstructing a 3D mesh of the human body and outline suggestions for making a comprehensive implementation. We also analyze the choices made and the operability of different parts of the system. Finally, we conclude by reviewing the major achievements of this thesis, while examining problems in planning and conducting the research.
 
-\fixme{TODO: graphics showing 1) kinect depth 2) point cloud 3) segmenting 4) measurement 5) calculation 6) makehuman} \label{fig:phases}
-
 \begin{figure}
     \centering
-    \begin{minipage}{0.49\textwidth}
+    
+    \begin{minipage}{0.39\textwidth}
         \includegraphics[width=\textwidth]{depth}
     \end{minipage}
-    \begin{minipage}{0.49\textwidth}
+    \begin{minipage}{0.60\textwidth}
         \includegraphics[width=\textwidth]{pcd-plain}
     \end{minipage}
-    \begin{minipage}{0.49\textwidth}
-        \includegraphics[width=\textwidth]{pcd-segmented}
-    \end{minipage}
-    \begin{minipage}{0.49\textwidth}
-        \includegraphics[width=\textwidth]{pcd-segmented}
-    \end{minipage}
-    \begin{minipage}{0.49\textwidth}
+
+    \includegraphics[width=\textwidth]{pcd-segmented}
+    
+    \begin{minipage}{0.56\textwidth}
         \includegraphics[width=\textwidth]{spreadsheet1}
     \end{minipage}
-    \begin{minipage}{0.49\textwidth}
+    \begin{minipage}{0.43\textwidth}
         \includegraphics[width=\textwidth]{measured-hannu}
     \end{minipage}
-    \caption{\fixme{TODO: better images; numbering; description; create image 4 from image 3}}
+    
+    \caption{The steps to reconstruct a MakeHuman model of the user. 1) Depth data is received from Kinect. 2) The depth measurements are converted to a point cloud. 3) The point cloud is segmented and each body part is measured. 4) The measurements are copied to a spreadsheet and used to compute MakeHuman measurement values. 5) The values are manually input into MakeHuman, and a model is created.}
     \label{fig:steps}
 \end{figure}
 
