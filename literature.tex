@@ -94,7 +94,7 @@ Features still lacking in Kintinuous include loop closure and map reintegration.
 
 \section{Modeling the human body}
 
-Humans are very common in contemporary animations and computer games. A standard digital representation called \term{rigged mesh} has been developed. This means the shape of the human is saved as a mesh, and it can be animated using a hierarchical skeleton, a \term{rig}. The vertices of the mesh are associated to the bones in skeleton, so they are moved accordingly when the skeleton pose is changed. This is called skinning.
+Humans are very common in contemporary animations and computer games. A standard digital representation called \term{rigged mesh} has been developed. This means the shape of the human is saved as a mesh, and it can be animated using a hierarchical skeleton, a \term{rig}. The vertices of the mesh are associated to the bones in skeleton, so they are moved accordingly when the skeleton pose is changed. This association is called skinning.
 
 \subsection{Human anatomy}
 
@@ -111,7 +111,7 @@ To date, several guides to human anatomy for artists have been published \autoci
 
 \subsection{3D reconstruction of the human body}
 
-\fixme{TODO: a single-paragraph preface}
+Methods for reconstructing humans have been researched before. In this section, we overview some previous approaches, and also introduce human body models that have been developed.
 
 \textit{Morphable models} are defined by \citet{schneider2010fitting} to mean parametric models of 3D shape, created by applying Principal Component Analysis (PCA) on a database of meshes. As a single PCA model can only cover a limited subspace of shapes, complex shapes can be split into parts, creating in essence a multi-PCA model of the overall shape. Fitting such a morphable model to a shape is easy if the target representation is semantically consistent with the model. That is, the target should be a mesh that has the same number of vertices in positions corresponding to the model. Practically, this is rarely true, and a method for finding the correspondences is needed. \citet{schneider2010fitting} describe the classical way of fitting a morphable model to a point cloud that consists of three steps. First, a template mesh corresponding to the vertex structure of the morphable model must be fitted to the point cloud using a non-rigid registration method. This template is used to find points corresponding to vertices. The topology is then solved and the morphable model can be fitted. A better approach is suggested, where all the pose and shape constraints are written as a matrix equation. Then an iterative optimization is run, where the pose is optimized by an ICP-like method, parameter changes are solved from the matrix equation using singular value decomposition and then the parameters are updated. The optimization is stopped when the mean squared error becomes stable between iterations.
 
