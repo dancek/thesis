@@ -275,7 +275,16 @@ Finding the correct target weights was still a problem. Different approaches wer
 
 Still, the idea of black-box optimization with expensive error computation on each iteration left questions about the implementation, and was not easy to begin working on. A better idea would be to make some measurements on the point cloud of a body part, and then make similar measurements on the mesh for each iteration of the optimization. This would significantly lessen the computational cost.
 
-However, considering how the target system works, more deduction can be done beforehand. The magnitude of a target's effect is linearly defined by its weight. Therefore, if a measurement of the mesh is known for two values of a target weight, the weight matching another measurement value can be interpolated. This does require some assumptions: the targets must not overlap, the weights must be in reasonable limits (for example, the mesh must never clip itself) and the measurements must be linear.
+Making simple measurements to body part--specific point clouds was implemented. Initially we chose to measure bone length and average distance to bone. These values are saved on each frame, and can be exported in bulk.
+
+We took the values to a spreadsheet and tried to find ways to calculate MakeHuman measurements from them. Most relations between the two are straightforward, but mostly with slight differences that should be fixable with a linear function. For example, MakeHuman has neck length while the NITE skeleton puts the head ``joint'' inside the head, near top. As the measurement is defined differently, the correct value might be 22cm in NITE skeleton and 12cm in MakeHuman. More difficult cases are found especially in the torso, where different measurements on the point clouds might be needed.
+
+We contrived functions for converting the measurements. Now we could get a satisfactory body model by feeding the calculated values to MakeHuman. However, our choices of functions are mildly arbitrary, and they should be researched better. We have anecdotal evidence that two different persons are modeled differently and mostly plausibly using the current system, but the differences between persons don't seem to be as great as in reality.
+
+At this point, our time was limited and no further research was made. The relation of point cloud measurements on humans and suitable MakeHuman parameter values should be surveyed systematically. Once the proper functions are decided, automating the computation and creation of the MakeHuman model will be easy.
+
+% TODO: should this be said?
+% However, considering how the target system works, more deduction can be done beforehand. The magnitude of a target's effect is linearly defined by its weight. Therefore, if a measurement of the mesh is known for two values of a target weight, the weight matching another measurement value can be interpolated. This does require some assumptions: the targets must not overlap, the weights must be in reasonable limits (for example, the mesh must never clip itself) and the measurements must be linear.
 
 \fixme{TODO: write this so that it makes sense and reflects our practical achievements}
 
