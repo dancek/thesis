@@ -119,8 +119,6 @@ The CUDA implementations of EM-ICP and Softassign published by \citet{tamaki2010
     \label{fig:klaus}
 \end{figure}
 
-\fixme{TODO: refer to figure}
-
 Another approach was suggested by Klaus Förger from our research group, led by professor Tapio Takala. The idea is to gather point sets for different versions of each body part, depending on joint angles and orientation relative to the camera. Instead of trying to align point clouds, we would try to gather a lot of data and then use statistical methods such as averaging to avoid outliers.
 
 This approach extends the assumption that each body part is a rigid object by capturing separate data for different poses. This might allow for more accurate reconstruction, given sophisticated methods for modeling the body surface from the data. On the other hand, the amount of data is larger and finding a suitable method for creating the rigged mesh is more difficult. Ultimately, this approach would require further experimentation on how different surface reconstruction approaches work with the data.
