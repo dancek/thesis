@@ -4,6 +4,8 @@
 
 In this chapter, we discuss the work completed towards reconstructing a 3D mesh of the human body and outline suggestions for making a comprehensive implementation. We also analyze the choices made and the operability of different parts of the system. Finally, we conclude by reviewing the major achievements of this thesis, while examining problems in planning and conducting the research.
 
+The approach we deem the most promising is illustrated in its current form in figure~\ref{fig:steps}.
+
 \begin{figure}
     \centering
     
@@ -27,8 +29,6 @@ In this chapter, we discuss the work completed towards reconstructing a 3D mesh 
     \label{fig:steps}
 \end{figure}
 
-\fixme{TODO: refer to figure}
-
 \newtopic
 
 The scope of our work was human body reconstruction, and we chose a Microsoft Kinect for Xbox 360 as the hardware sensor to be used. We tried using three different driver libraries for the hardware, and decided OpenNI and NITE to be the most suitable. This choice was based on impressions gained through brief testing---a further assessment would be required to objectively decide whether OpenNI is truly better than Microsoft Kinect SDK for the task. We outline the known differences in section~\ref{literature.drivers}. However, we concede that the accuracy of skeleton tracking is important, and our knowledge of it is inexact. Ideally, we would have utilized an open source skeleton tracking system that has been thoroughly tested---if one existed.
@@ -47,7 +47,7 @@ We found two alternative approaches for utilizing Kinfu. One was suggested by \c
 
 Two other approaches for mesh reconstruction were also researched. These methods can work on a single frame, and thus do not rely on point cloud alignment. One was the simple ``cylinder man'' method described in section~\ref{approach.cylinders}, which was easy to implement and worked well---but whose accuracy was not nearly enough for us. Ways to improve on this basic idea were contemplated, but no great ideas were found. Finally, we tried to utilize MakeHuman to create believable human shapes by taking measurements of the point clouds and changing parameters accordingly. This approach turned out to be the most promising---it is suitable for real-time computation and the humans created with MakeHuman look convincing.
 
-Unfortunately, we did not reach a working complete system. Adapting measurements made from segmented point clouds to the MakeHuman ones is not entirely straightforward. Measuring many different people using Kinect and manually testing different ways of generating MakeHuman parameters from the measurements would be beneficial. Regrettably we had no time to do that properly. We did create a spreadsheet for calculating MakeHuman parameters from raw measurement data, but many of the decisions we had to make were unfounded. This is because the correspondence between the NITE skeleton and the MakeHuman model is unknown. In retrospect, this is one reason depending heavily on the skeleton tracking is problematic, and should have been considered more carefully. Moreover \fixme{TODO: what was i thinking here?}
+Unfortunately, we did not reach a working complete system. Adapting measurements made from segmented point clouds to the MakeHuman ones is not entirely straightforward. Measuring many different people using Kinect and manually testing different ways of generating MakeHuman parameters from the measurements would be beneficial. Regrettably we had no time to do that properly. We did create a spreadsheet for calculating MakeHuman parameters from raw measurement data, but many of the decisions we had to make were unfounded. This is because the correspondence between the NITE skeleton and the MakeHuman model is unknown. In retrospect, this is one reason depending heavily on the skeleton tracking is problematic, and should have been considered more carefully. % Moreover \fixme{TODO: what was i thinking here?}
 
 With the spreadsheet we have a way to create an avatar with MakeHuman, albeit manual work is required. Textual output from our measurement application needs to be copied into a worksheet. Then parameter values are automatically computed (though using dubious methods), and they need to be manually copied into MakeHuman. For posing and animating the generated mesh, exporting to Blender is required. This amount of manual work is unacceptable when compared to our original goal---but negligible when compared to the approach using Kinfu and automatic rigging as described in section~\ref{approach.autorig}.
 
