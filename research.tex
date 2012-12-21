@@ -141,11 +141,11 @@ We made different approaches to this problem, and in this section we describe ea
     \label{fig:cylinders}
 \end{figure}
 
-\fixme{TODO: expand this section a bit; refer to figure}
+% TODO: expand this section a bit
 
-As the very first prototype, a simple cylinder approximation was used. A cylinder was fitted to the point cloud of a body part, and colored according to its average color. This was good for testing the segmentation and getting a general idea of how accurate the skeleton is. Some corner cases were also found using this prototype. For example, when a lot of occlusion occurs the NITE skeleton may begin glitching. The body part segmentation also has errors at times when bones are very near each other.
+As the very first prototype, a simple cylinder approximation was used. A cylinder was fitted to the point cloud of a body part, and colored according to its average color---see figure~\ref{fig:cylinder} for a screenshot. This was good for testing the segmentation and getting a general idea of how accurate the skeleton is. Some corner cases were also found using this prototype. For example, when a lot of occlusion occurs the NITE skeleton may begin glitching. The body part segmentation also has errors at times when bones are very near each other.
 
-Obviously, a more human-like model was needed. The "cylinder man" could be usable as an avatar, and is certainly recognizable as human-like. But certainly its shape was nowhere near a real human body. Different simple shapes such as ellipsoids were considered. This would still have left the problem of connecting the body parts. A solution based on meta-blobs might have been feasible, but in the end this approach started to seem quite cumbersome. And still the accuracy would have left much to be hoped for.
+Obviously, a more human-like model was needed. The ``cylinder man'' could be usable as an avatar, and is certainly recognizable as human-like. But certainly its shape was nowhere near a real human body. Different simple shapes such as ellipsoids were considered. This would still have left the problem of connecting the body parts. A solution based on meta-blobs might have been feasible, but in the end this approach started to seem quite cumbersome. And still the accuracy would have left much to be hoped for.
 
 
 \subsection{Kinfu and automatic rigging} \label{approach.autorig}
