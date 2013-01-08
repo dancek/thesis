@@ -94,7 +94,7 @@ Another issue pointed out in KinectFusion is that ICP cannot work without geomet
 
 Kintinuous was further improved by \citet{Whelan12tr} by adding an image-based tracking algorithm similar to \citep{tykkala2011direct} and the initial step in \citep{huang2011visual}. The three different algorithms used for odometry (ICP, FOVIS and image-based ``RGBD'') can be combined. ICP and RGBD combined can work in real-time and yield a more accurate trajectory than any of the algorithms alone. \citep{Whelan12tr}
 
-Features still lacking in Kintinuous include loop closure and map reintegration. In practice, moving the sensor back to an area already visited is problematic. Since no map reintegration is implemented, the area will be overwritten. Drift may also be significant---no intelligent measures are taken to correct the error when an area is revisited.
+Features still lacking in Kintinuous include \term{loop closure} and \term{map reintegration}. A loop closure method would recognize when the sensor has made a loop (returning to a previously seen area), and correct errors in gathered data by evenly spreading the error in trajectory to observations made during the loop. Map reintegration means populating the TSDF with previous measurements when it is moved (when an area is revisited). In practice, moving the sensor back to an area already visited is problematic. Since no map reintegration is implemented, the area will be overwritten. Drift may also be significant---no intelligent measures are taken to correct the error when an area is revisited.
 
 
 \section{Modeling the human body}
