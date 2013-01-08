@@ -91,7 +91,7 @@ Then each joint position is listed along with its position, rotation and the con
 %
 where $p$ is position, $c$ is the confidence of a value and $q$ is the rotation quaternion. After the skeleton definitions comes the standard PCD header.
 
-For experimentation, we created functions in MATLAB and Python (NumPy) for importing the plain-text PCD file format\footnote{There are actually two different data formats supported in the PCD specification: the plain-text ASCII format where each point is on its own line, and a binary format where the data is a direct memory dump of the point cloud data structure. PCL includes an utility to convert between these formats, so we found it currently unnecessary to support the binary format in our own tools.} with our own skeleton extension. Some experimentation and plotting of the data was made in both, but generally PCL seemed to be a better platform for working with point clouds than either MATLAB or Numpy.
+For experimentation, we created functions in MATLAB and Python (NumPy) for importing the plain-text PCD file format\footnote{There are actually two different data formats supported in the PCD specification: the plain-text ASCII format where each point is on its own line, and a binary format where the data is a direct memory dump of the point cloud data structure. PCL includes a utility to convert between these formats, so we found it currently unnecessary to support the binary format in our own tools.} with our own skeleton extension. Some experimentation and plotting of the data was made in both, but generally PCL seemed to be a better platform for working with point clouds than either MATLAB or Numpy.
 
 \section{Point cloud alignment} \label{approach.alignment}
 
@@ -99,7 +99,7 @@ The naïve approach to modeling uses data only from a single frame. However, thi
 
 To allow for combining data from multiple frames, the observations (point clouds) need to be aligned one way or another. Methods introduced in \autoref{literature.alignment} were available, each with their own trade-offs.
 
-We considered the different methods and tested implementations available. Kinfu already uses ICP, so the source code was studied and alterations were made to see the effects. Different registration algorithms included in PCL were studied on the level of the API documentation. It was concluded that registration is not a simple task, and the ICP implementations used by KinectFusion and Kinfu are highly optimized GPGPU code are very difficult to match performance-wise. This discouraged us from further investigating any algorithms that only have CPU implementations.
+We considered the different methods and tested implementations available. Kinfu already uses ICP, so the source code was studied and alterations were made to see the effects. Different registration algorithms included in PCL were studied on the level of the API documentation. It was concluded that registration is not a simple task, and the ICP implementations used by KinectFusion and Kinfu are highly optimized GPGPU code very difficult to match performance-wise. This discouraged us from further investigating any algorithms that only have CPU implementations.
 
 Of course, we could look at making our own GPGPU implementations of registration algorithms. But such a task would require a major effort and there would be no guarantee of real benefit. This would have deviated too far from the focus of our research, so we had to be content with existing registration algorithms that run on the GPU.
 
