@@ -81,7 +81,7 @@ Overall, KinectFusion takes four steps to process each frame, which are the foll
     \item[Measurement.] The Kinect input data is converted into 3D points. Surface normals are computed using neighboring points.
     \item[Pose estimation.] ICP is used to align the point clouds for current frame and a prediction of surface points (created in the last step of previous frame). The rigid transformation that ICP yields corresponds to camera movement. The new camera pose in global coordinates is saved.
     \item[Reconstruction update.] Given the now computed current camera pose, the measured 3D points are now known in global coordinates. The voxel grid is updated using this surface information. More specifically, a running TSDF average is saved along with weight for calculating the next average.
-    \item[Surface prediction.] The TSDF is raycast to get a prediction of surface measurement for each point in the depth image. This predicted measurement usually has less noise than an actual Kinect depth image, so it is more suitable for the pose estimation than the point cloud of previous frame. The raycasting done here is also used for rendering.
+    \item[Surface prediction.] A prediction of surface measurement for each point in the depth image is made from the TSDF. A \term{raymarching} algorithm is used---which is in essence highly optimized raycasting using SDF to take long steps along the ray until the surface is near. The predicted measurement usually has less noise than an actual Kinect depth image, so it is more suitable for the pose estimation than the point cloud of previous frame. The raycasting done here is also used for rendering.
 \end{description}
 
 \newtopic
