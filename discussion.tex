@@ -35,7 +35,7 @@ The scope of our work was human body reconstruction, and we chose a Microsoft Ki
 
 The choice of sensor dictated that work would go on using 3D point data. Image-based reconstruction deserves to be researched, too, but requires a better RGB sensor than the one Kinect has. In principle, using depth information should make reconstruction very easy, but in practice the inaccuracy and noise cause difficulties. This became apparent as work progressed.
 
-Our raw data, then, comprised point clouds gathered using OpenNI, with users segmented from the background and their skeletons tracked by NITE.
+Our raw data, then, comprised point clouds gathered using OpenNI, with humans segmented from the background and their skeletons tracked by NITE.
 
 We decided that reconstruction should become easier if we further segment the point cloud into sub-clouds containing points of a single body part. The exact manner this was done was a nearest-neighbor search; each point is assigned to the nearest bone. This makes our approach heavily dependent on the skeleton data and vulnerable to errors therein. Moreover, the amount of bones in the NITE skeleton is small, yielding few body parts. On the other hand, better segmentation would require more a priori knowledge---perhaps a skeleton with more bones or a machine learning algorithm with a database of segmented bodies. Consequently, we could not realistically get significantly better body part segmentation given the resources available.
 
