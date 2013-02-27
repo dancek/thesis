@@ -1,4 +1,4 @@
 thesis
 ======
 
-My MSc thesis. Well, hopefully in 6 months' time.
+My MSc thesis: Real-time Human Body Reconstruction Using a Depth Camera.
